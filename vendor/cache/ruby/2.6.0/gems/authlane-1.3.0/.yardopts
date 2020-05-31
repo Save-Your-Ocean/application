@@ -1,1 +1,0 @@
---no-private --main=README.md --markup=markdown lib/**/*.rb
