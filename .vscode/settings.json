@@ -1,0 +1,11 @@
+{
+  "sqltools.connections": [
+    {
+      "database": "${workspaceFolder:bakery}/db/development.sqlite",
+      "driver": "SQLite",
+      "name": "baker",
+      "previewLimit": 50
+    }
+  ],
+  "sqltools.useNodeRuntime": true
+}
