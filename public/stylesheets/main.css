@@ -23,5 +23,8 @@
   border: transparent;
 }
 .uk-section-footer {
+  display: flow-root;
+  box-sizing: border-box;
+  padding-top: 70px;
   padding-bottom: 0px !important;
 }

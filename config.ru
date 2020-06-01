@@ -5,6 +5,7 @@ if ActiveRecord::Base.connection.migration_context.needs_migration?
 end
 
 run ApplicationController
+use RolesController
 use CheckInsController
 use LocationsController
 use CommentsController

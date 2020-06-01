@@ -1,0 +1,16 @@
+current directory: /home/noly/code/projects/bakery/vendor/cache/ruby/2.7.0/gems/sysrandom-1.0.5/ext/sysrandom
+/home/noly/.rbenv/versions/2.7.1/bin/ruby -I /home/noly/.rbenv/versions/2.7.1/lib/ruby/2.7.0 -r ./siteconf20200530-66797-8vnarn.rb extconf.rb
+creating Makefile
+
+current directory: /home/noly/code/projects/bakery/vendor/cache/ruby/2.7.0/gems/sysrandom-1.0.5/ext/sysrandom
+make "DESTDIR=" clean
+
+current directory: /home/noly/code/projects/bakery/vendor/cache/ruby/2.7.0/gems/sysrandom-1.0.5/ext/sysrandom
+make "DESTDIR="
+compiling randombytes_sysrandom.c
+compiling sysrandom_ext.c
+linking shared-object sysrandom_ext.so
+
+current directory: /home/noly/code/projects/bakery/vendor/cache/ruby/2.7.0/gems/sysrandom-1.0.5/ext/sysrandom
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 sysrandom_ext.so ./.gem.20200530-66797-1gub08l
