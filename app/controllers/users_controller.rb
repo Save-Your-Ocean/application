@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   get '/users/register' do
-    @page_title = 'User Registration'
+    settings.page_title = 'User Registration'
     if !logged_in?
       erb :'/users/register', locals: {message: "Please register before you sign in"}
     else
@@ -9,9 +9,9 @@ class UsersController < ApplicationController
     end
   end
 
-  post '/signup' do
+  post '/users/register' do
     if params[:username] == "" || params[:name] == "" || params[:password] == ""
-      redirect to '/useers/register'
+      redirect to '/users/register'
     else
       @user = User.create(params)
       session[:user_id] = @user.id
@@ -20,31 +20,38 @@ class UsersController < ApplicationController
   end
 
   get '/users/dashboard' do
-    @page_title = 'Dashboard'
-    @user = User.find_by(session[:user_id])
-    if logged_in?
-      redirect to '/login'
+    settings.page_title = 'Dashboard'
+    @user = current_user
+    if !logged_in?
+      redirect to '/users/login'
     else
+<<<<<<< HEAD
       erb :'/users/dashboard'
+=======
+      binding.pry
+      erb :'/users/dashboard' 
+>>>>>>> parent of 1ab3d03... Revert "Added Location Submission Frontend"
     end
   end
 
   get '/users/login' do
-    @page_title = 'User Login'
+    settings.page_title = 'User Login'
+    @user = current_user
     if logged_in?
-      redirect to :'/users/dashboard'
+      redirect to "/users/dashboard"
     else
       erb :'/users/login'
     end
   end
 
   post '/users/login' do
-    user = User.find_by(username: params[:username])
-    if user && user.authenticate(params[:password])
-      session[:user_id] = user.id
+    @user = User.find_by(username: params[:username])
+    if @user && @user.authenticate(params[:password])
+      session[:user_id] = @user.id
+
       redirect to "/users/dashboard"
     else
-      redirect to '/users/register'
+      redirect to "/users/register"
     end
   end
   
@@ -79,7 +86,7 @@ class UsersController < ApplicationController
   end
 
   get '/logout' do
-    @page_title = 'Logout'
+    settings.page_title = 'Logout'
     session.destroy
     redirect to '/'
   end
