@@ -12,6 +12,8 @@
 /test/tmp/
 /test/version_tmp/
 /tmp/
+/db/*
+!/db/migrate/
 
 # Used by dotenv library to load environment variables.
 # .env
