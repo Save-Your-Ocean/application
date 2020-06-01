@@ -1,0 +1,15 @@
+
+[1mFrom:[0m /home/noly/code/projects/bakery/app/controllers/users_controller.rb:32 self.POST /login:
+
+    [1;34m27[0m:     erb [33m:[1;33m'[0m[33musers/login[1;33m'[0m[33m[0m
+    [1;34m28[0m:   [32mend[0m
+    [1;34m29[0m: 
+    [1;34m30[0m:   post [31m[1;31m'[0m[31m/login[1;31m'[0m[31m[0m [32mdo[0m
+    [1;34m31[0m:     user = [1;34;4mUser[0m.find_by([33m:username[0m => params[[33m:username[0m])
+ => [1;34m32[0m:     binding.pry
+    [1;34m33[0m:     [32mif[0m user && user.authenticate(params[[33m:password[0m])
+    [1;34m34[0m:       session[[33m:user_id[0m] = user.id
+    [1;34m35[0m:       redirect to [31m[1;31m"[0m[31m/users/dashboard[1;31m"[0m[31m[0m
+    [1;34m36[0m:     [32melse[0m
+    [1;34m37[0m:       redirect to [31m[1;31m'[0m[31m/signup[1;31m'[0m[31m[0m
+

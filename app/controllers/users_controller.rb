@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   get '/users/register' do
-    settings.page_title = 'User Registration'
+    @page_title = 'User Registration'
     if !logged_in?
       erb :'/users/register', locals: {message: "Please register before you sign in"}
     else
@@ -9,9 +9,9 @@ class UsersController < ApplicationController
     end
   end
 
-  post '/users/register' do
+  post '/signup' do
     if params[:username] == "" || params[:name] == "" || params[:password] == ""
-      redirect to '/users/register'
+      redirect to '/useers/register'
     else
       @user = User.create(params)
       session[:user_id] = @user.id
@@ -20,34 +20,31 @@ class UsersController < ApplicationController
   end
 
   get '/users/dashboard' do
-    settings.page_title = 'Dashboard'
-    @user = current_user
-    if !logged_in?
-      redirect to '/users/login'
+    @page_title = 'Dashboard'
+    @user = User.find_by(session[:user_id])
+    if logged_in?
+      redirect to '/login'
     else
-      binding.pry
       erb :'/users/dashboard' 
     end
   end
 
   get '/users/login' do
-    settings.page_title = 'User Login'
-    @user = current_user
+    @page_title = 'User Login'
     if logged_in?
-      redirect to "/users/dashboard"
+      redirect to :'/users/dashboard'
     else
       erb :'/users/login'
     end
   end
 
   post '/users/login' do
-    @user = User.find_by(username: params[:username])
-    if @user && @user.authenticate(params[:password])
-      session[:user_id] = @user.id
-
+    user = User.find_by(username: params[:username])
+    if user && user.authenticate(params[:password])
+      session[:user_id] = user.id
       redirect to "/users/dashboard"
     else
-      redirect to "/users/register"
+      redirect to '/users/register'
     end
   end
   
@@ -82,7 +79,7 @@ class UsersController < ApplicationController
   end
 
   get '/logout' do
-    settings.page_title = 'Logout'
+    @page_title = 'Logout'
     session.destroy
     redirect to '/'
   end

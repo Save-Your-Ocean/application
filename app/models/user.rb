@@ -5,6 +5,4 @@ class User < ActiveRecord::Base
   has_many :managed_locations, through: :location_managers, source: :location
   validates_presence_of :username, :password
   validates :username, uniqueness: true
-  belongs_to :role
-
 end

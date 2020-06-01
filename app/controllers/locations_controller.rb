@@ -11,16 +11,8 @@ class LocationsController < ApplicationController
   end
 
   # POST: /locations
-  post "/locations/new" do
-    @user = current_user
-    if logged_in?
-      @location = Location.create(params)
-      LocationManager.create(user_id: @user.id, location_id: @location.id)
-
-      redirect to '/users/dashboard'
-    else
-      erb :'/errors/login'
-    end
+  post "/locations" do
+    redirect "/locations"
   end
 
   # GET: /locations/5
