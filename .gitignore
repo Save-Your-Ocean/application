@@ -1,7 +1,5 @@
-/vendor
-/config
+/vendor/*
 /.vscode
-/.bundle
 /.ruby-version
 *.gem
 *.rbc
