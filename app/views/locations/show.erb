@@ -1,1 +1,82 @@
-<h1>This is the show page for an individual instance of your model.</h1>
+<div class="uk-section uk-section-secondary">
+      <div class="uk-container">
+        <h1><%= @location.name %></h1>
+        <p uk-margin>
+            <button class="uk-button uk-button-default uk-button-small">Check-in</button>
+        </p>
+      </div>
+    </div>
+
+<div class="uk-section">
+  <div class="uk-container uk-margin">
+<div class="uk-grid-divider uk-child-width-expand@s" uk-grid>
+  <div class="uk-width-1-4@m">
+  <table class="uk-table">
+    <thead>
+        <tr>
+            <th><img src="/images/testavatar.jpeg" class="uk-preserve-width uk-border-circle" width="50" height="50" style="padding-right: 4px;">
+    <a href="#" class="uk-text-middle"><%= @user.username %></a></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <ul class="uk-iconnav uk-iconnav-vertical">
+                <%# if @user.role.title == "Admin" %>
+                <li><a href="/locations/pending"><span uk-icon="icon: list" style="padding-right: 4px;"></span>Pending Listings</a></li>
+                <%# <% elsif @user.role.title == nil  %>
+                <%# end %>
+                <li><a href="/locations/new"><span uk-icon="icon: plus" style="padding-right: 4px;"></span>Add a Business</a></li>
+                <li><a href="#"><span uk-icon="icon: file-edit" style="padding-right: 4px;"></span>Edit a Business</a></li>
+                <li><a href="#"><span uk-icon="icon: settings" style="padding-right: 4px;"></span>Settings</a></li>
+            </ul>
+            </td>
+        </tr>
+
+    </tbody>
+</table>
+</div>
+
+<div class="uk-width-expand@m">
+  <div class="uk-card uk-card-default uk-card-body">
+    <table class="uk-table uk-table-hover uk-table-middle uk-table-divider">
+        <thead>
+            <tr>
+            <th class="uk-table-shrink uk-text-center"></th>
+      <th scope="uk-table-shrink uk-text-center"></th>
+      <th scope="uk-table-shrink uk-text-center">Location</th>
+      <th scope="uk-table-shrink uk-text-center">Address</th>
+      <th scope="uk-table-shrink uk-text-center">City</th>
+      <th scope="uk-table-shrink uk-text-center">Country</th>
+      <th scope="uk-table-shrink uk-text-right">Approved?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @user.managed_locations.each do |location| %> 
+      <tr>
+        <td class="uk-text-center"><center><input class="uk-checkbox" type="checkbox"></center></td>
+        <td class="uk-text-center"><img class="uk-preserve-width uk-border-circle" src="/images/testavatar.jpeg" width="50" alt=""></td>
+        <td><a href="/locations/<%= location.id %>" alt="<%= location.name %>"><%= location.name %></a></td>
+        <td class="uk-text-center"><%= location.address %></td>
+        <td class="uk-text-center"><%= location.city %></td>
+        <td class="uk-text-center"><%= location.country %></td>
+        <% if location.approved == true%>
+        <td class="uk-text-center"><button class="uk-button uk-button-primary uk-width-1-1">Yes</button></td>
+        <% elsif location.approved == false %>
+        <td class="uk-text-center"><button class="uk-button uk-button-danger uk-width-1-1">No</button></td>
+        <% else %>
+        <td class="uk-text-center"><button class="uk-button uk-button-secondary uk-width-1-1">Pending</button></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<ul class="uk-pagination">
+    <li><a href="#"><span class="uk-margin-small-right" uk-pagination-previous></span> Previous</a></li>
+    <li class="uk-margin-auto-left"><a href="#">Next <span class="uk-margin-small-left" uk-pagination-next></span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>

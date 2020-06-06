@@ -6,6 +6,17 @@
 </div>
 
 
+<% if flash.has?(:error) %>
+    <div class="uk-section uk-padding-small">
+      <div class="uk-container uk-container-small">
+    <div class="cls:uk-animation-fade uk-alert-danger " uk-alert>
+        <a class="uk-alert-close" uk-close></a>
+        <h3>Sorry</h3>
+        <p><%= flash[:error] %></p>
+    </div>
+    </div>
+    </div>
+     <% end %>
 
 <div class="uk-section">
   <div class="uk-container uk-container-xsmall uk-align-center">

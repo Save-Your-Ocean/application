@@ -54,8 +54,8 @@
       <tr>
         <td class="uk-text-center"><center><input class="uk-checkbox" type="checkbox"></center></td>
         <td class="uk-text-center"><img class="uk-preserve-width uk-border-circle" src="/images/testavatar.jpeg" width="50" alt=""></td>
-        <td><%= location.name %></td>
-        <td class="uk-text-truncate uk-text-center"><%= location.address %></td>
+        <td><a href="/locations/profile/<%= location.id %>" alt="<%= location.name %>"><%= location.name %></a></td>
+        <td class="uk-text-center"><%= location.address %></td>
         <td class="uk-text-center"><%= location.city %></td>
         <td class="uk-text-center"><%= location.country %></td>
         <% if location.approved == true%>

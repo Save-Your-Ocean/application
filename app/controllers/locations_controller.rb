@@ -1,5 +1,9 @@
 class LocationsController < ApplicationController
 
+  get '/locations/map' do
+    erb :'/locations/map'
+  end
+
   # GET: /locations
   get "/locations/all" do
     content_type :json
@@ -32,10 +36,10 @@ class LocationsController < ApplicationController
   end
 
   # GET: /locations/5
-  get "/locations/:id" do
-    content_type :json
-    @locations = Location.find(params[:id])
-    @locations.to_json
+  get "/locations/profile/:id" do
+    @location = Location.find(params[:id])
+    @user = current_user
+    erb :'/locations/show'
   end
 
   # GET: /locations/5/edit

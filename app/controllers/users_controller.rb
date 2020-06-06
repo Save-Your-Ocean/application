@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   get '/users/register' do
     settings.page_title = 'User Registration'
     if !logged_in?
-      erb :'/users/register', locals: {message: "Please register before you sign in"}
+      erb :'/users/register'
     else
       redirect to '/user/dashboard'
     end
@@ -20,8 +20,9 @@ class UsersController < ApplicationController
     end
   end
 
-  get '/errors/login' do
-    erb :'/errors/login'
+  get "/users/profile/:username" do
+    @user = User.find_by(username: params[:username])
+    erb :'/users/show'
   end
 
   get '/users/dashboard' do
@@ -40,6 +41,7 @@ class UsersController < ApplicationController
     if logged_in?
       redirect to "/users/login"
     else
+      flash[:error] = "Double check your login details!"
       erb :'/users/login'
     end
   end
