@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_01_000941) do
+ActiveRecord::Schema.define(version: 2020_06_06_021208) do
 
   create_table "check_ins", force: :cascade do |t|
     t.integer "user_id"
@@ -38,6 +38,8 @@ ActiveRecord::Schema.define(version: 2020_06_01_000941) do
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "approved"
     t.string "zipcode"
+    t.string "email"
+    t.string "phone"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -54,6 +56,7 @@ ActiveRecord::Schema.define(version: 2020_06_01_000941) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "role_id"
+    t.string "email"
   end
 
 end
