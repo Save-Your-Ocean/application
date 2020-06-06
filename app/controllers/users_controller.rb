@@ -59,16 +59,12 @@ class UsersController < ApplicationController
   
   # GET: /users
   get "/users/all" do
+    # matches "GET /users/all?offset=foo&limit=bar"
     content_type :json
+    offset = params['offset'].to_i - 1
+    limit = params['limit'].to_i - 1
     @users = User.all
-    response = @users.map do |user|
-      binding.pry
-      user_data = user.to_json
-      # user_data.delete(:password_digest) # <-- If your keys are symbolized
-      user_data.password_digest = 'private'
-      user_data
-    end
-    response.to_json
+    @users[offset..limit].to_json(except: [:password_digest, :role_id])
   end
 
   # POST: /users
