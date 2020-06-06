@@ -1,28 +1,25 @@
 require './config/environment'
 
 class ApplicationController < Sinatra::Base
-  register Sinatra::AuthLane
-  helpers Sinatra::Cookies
 
   configure do
     set :site_name, 'Save Your Ocean'
-    set :page_title, ' '
+    set :page_title, 'Save Your Ocean'
     set :public_folder, 'public'
     set :views, 'app/views'
     set :error_msg, 'Sorry'
     enable :sessions
-    set :session_secret, 'sdf098d9jsa'
+    set :session_secret, 'sesh'
+    use Rack::Flash
   end
-  
 
   get "/" do
-    @user = current_user
     settings.page_title = "Welcome to Save Your Ocean!"
     erb :welcome
   end
 
   not_found do
-    @page_title = "404"
+    settings.page_title = "404"
     status 404
     erb :'errors/four_oh_four'
   end
@@ -34,7 +31,12 @@ class ApplicationController < Sinatra::Base
     end
 
     def current_user
-      @current_user ||= User.find_by(id: session[:user_id])
+      @current_user = User.find_by(id: session[:user_id])
     end
+
+    def protect
+      redirect to '/errors/login' unless @user.role.id = 1
+    end
+
   end
 end

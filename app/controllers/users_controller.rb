@@ -10,13 +10,18 @@ class UsersController < ApplicationController
   end
 
   post '/users/register' do
-    if params[:username] == "" || params[:name] == "" || params[:password] == ""
-      redirect to '/users/register'
+    if params[:username] == "" || params[:password] != params[:password_confirmation]
+      flash[:error] = "Make sure you have entered a username and your password twice!"
+      erb :'/users/register'
     else
       @user = User.create(params)
       session[:user_id] = @user.id
       redirect to '/users/dashboard'
     end
+  end
+
+  get '/errors/login' do
+    erb :'/errors/login'
   end
 
   get '/users/dashboard' do
@@ -25,12 +30,7 @@ class UsersController < ApplicationController
     if !logged_in?
       redirect to '/users/login'
     else
-<<<<<<< HEAD
       erb :'/users/dashboard'
-=======
-      binding.pry
-      erb :'/users/dashboard' 
->>>>>>> parent of 1ab3d03... Revert "Added Location Submission Frontend"
     end
   end
 
@@ -38,7 +38,7 @@ class UsersController < ApplicationController
     settings.page_title = 'User Login'
     @user = current_user
     if logged_in?
-      redirect to "/users/dashboard"
+      redirect to "/users/login"
     else
       erb :'/users/login'
     end
@@ -56,18 +56,29 @@ class UsersController < ApplicationController
   end
   
   # GET: /users
-  get "/users" do
-    erb :"/users/index"
+  get "/users/all" do
+    content_type :json
+    @users = User.all
+    response = @users.map do |user|
+      binding.pry
+      user_data = user.to_json
+      # user_data.delete(:password_digest) # <-- If your keys are symbolized
+      user_data.password_digest = 'private'
+      user_data
+    end
+    response.to_json
   end
 
   # POST: /users
   post "/users" do
-    redirect "/users"
+    
   end
 
   # GET: /users/5
   get "/users/:id" do
-    erb :"/users/show"
+    content_type :json
+    @users = User.find(params[:id])
+    @users.to_json
   end
 
   # GET: /users/5/edit

@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 2020_05_31_020627) do
-=======
 ActiveRecord::Schema.define(version: 2020_06_01_000941) do
->>>>>>> parent of 1ab3d03... Revert "Added Location Submission Frontend"
 
   create_table "check_ins", force: :cascade do |t|
     t.integer "user_id"

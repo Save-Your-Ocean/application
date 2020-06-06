@@ -20,10 +20,13 @@
         <tr>
             <td>
               <ul class="uk-iconnav uk-iconnav-vertical">
-                <li><a href="#"><span uk-icon="icon: plus" style="padding-right: 4px;"></span>Add a Business</a></li>
+                <%# if @user.role.title == "Admin" %>
+                <li><a href="/locations/pending"><span uk-icon="icon: list" style="padding-right: 4px;"></span>Pending Listings</a></li>
+                <%# <% elsif @user.role.title == nil  %>
+                <%# end %>
+                <li><a href="/locations/new"><span uk-icon="icon: plus" style="padding-right: 4px;"></span>Add a Business</a></li>
                 <li><a href="#"><span uk-icon="icon: file-edit" style="padding-right: 4px;"></span>Edit a Business</a></li>
                 <li><a href="#"><span uk-icon="icon: settings" style="padding-right: 4px;"></span>Settings</a></li>
-                <li><a href="#"><span uk-icon="icon: trash" style="padding-right: 4px;"></span>Example</a></li>
             </ul>
             </td>
         </tr>

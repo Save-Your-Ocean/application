@@ -1,8 +1,10 @@
 class LocationsController < ApplicationController
 
   # GET: /locations
-  get "/locations" do
-    erb :"/locations/index"
+  get "/locations/all" do
+    content_type :json
+    @locations = Location.all
+    @locations.to_json
   end
 
   # GET: /locations/new
@@ -23,9 +25,17 @@ class LocationsController < ApplicationController
     end
   end
 
+  get "/locations/pending" do
+    @user = current_user
+    protect
+    erb :"/locations/pending"
+  end
+
   # GET: /locations/5
   get "/locations/:id" do
-    erb :"/locations/show"
+    content_type :json
+    @locations = Location.find(params[:id])
+    @locations.to_json
   end
 
   # GET: /locations/5/edit

@@ -14,8 +14,8 @@ gem 'tux'
 gem 'slim'
 gem 'rest-client'
 gem 'sinatra-cache'
-gem 'authlane'
 gem 'sysrandom'
+gem 'rack-flash3'
 
 group :test do
   gem 'rspec'
