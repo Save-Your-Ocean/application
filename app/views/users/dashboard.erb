@@ -1,7 +1,7 @@
 <div class="uk-section uk-section-primary">
       <div class="uk-container uk-light">
         <h1>Welcome back <%= @user.username %>!</h1>
-        <h3>You have saved <strong class="uk-text-primary">1,213</strong> plastic bottles! Keep it up!</h3>
+        <h3>You have saved <strong class="uk-text-primary"><%= @checkins.sum(:count) %></strong> plastic bottles! Keep it up!</h3>
       </div>
     </div>
 
@@ -13,7 +13,7 @@
     <thead>
         <tr>
             <th><img src="/images/testavatar.jpeg" class="uk-preserve-width uk-border-circle" width="50" height="50" style="padding-right: 4px;">
-    <a href="#" class="uk-text-middle"><%= @user.username %></a></th>
+    <a href="/users/profile/<%= @user.username %>" class="uk-text-middle"><%= @user.username %></a></th>
         </tr>
     </thead>
     <tbody>
@@ -53,9 +53,9 @@
     <% @user.managed_locations.each do |location| %> 
       <tr>
         <td class="uk-text-center"><center><input class="uk-checkbox" type="checkbox"></center></td>
-        <td class="uk-text-center"><img class="uk-preserve-width uk-border-circle" src="/images/testavatar.jpeg" width="50" alt=""></td>
-        <td><a href="/locations/profile/<%= location.id %>" alt="<%= location.name %>"><%= location.name %></a></td>
-        <td class="uk-text-center"><%= location.address %></td>
+        <td class="uk-text-center"><img class="uk-preserve-width uk-border-rounded" src="/images/testavatar.jpeg" width="50" alt=""></td>
+        <td><a href="/locations/<%= location.id %>" alt="<%= location.name %>"><%= location.name %></a></td>
+        <td class="uk-text-center"><%= location.street %></td>
         <td class="uk-text-center"><%= location.city %></td>
         <td class="uk-text-center"><%= location.country %></td>
         <% if location.approved == true%>

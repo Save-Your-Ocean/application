@@ -22,12 +22,14 @@ class UsersController < ApplicationController
 
   get "/users/profile/:username" do
     @user = User.find_by(username: params[:username])
+    @checkins = CheckIn.where(user_id: @user.id)
     erb :'/users/show'
   end
 
   get '/users/dashboard' do
     settings.page_title = 'Dashboard'
     @user = current_user
+    @checkins = CheckIn.where(user_id: 1)
     if !logged_in?
       redirect to '/users/login'
     else
@@ -41,7 +43,6 @@ class UsersController < ApplicationController
     if logged_in?
       redirect to "/users/login"
     else
-      flash[:error] = "Double check your login details!"
       erb :'/users/login'
     end
   end
@@ -53,7 +54,8 @@ class UsersController < ApplicationController
 
       redirect to "/users/dashboard"
     else
-      redirect to "/users/register"
+      flash[:error] = "Double check your login details!"
+      erb :"/users/login"
     end
   end
   

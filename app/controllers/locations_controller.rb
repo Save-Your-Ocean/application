@@ -1,11 +1,12 @@
 class LocationsController < ApplicationController
 
   get '/locations/map' do
+    @location = Location.find(id=1)
     erb :'/locations/map'
   end
 
   # GET: /locations
-  get "/locations/all" do
+  get "/locations/all.json" do
     content_type :json
     @locations = Location.all
     @locations.to_json
@@ -30,16 +31,47 @@ class LocationsController < ApplicationController
   end
 
   get "/locations/pending" do
+    settings.page_title = 'Pending'
     @user = current_user
-    protect
-    erb :"/locations/pending"
+    @locations = Location.where(approved: nil)
+    if !logged_in?
+      redirect to '/users/login'
+    else
+      erb :'/locations/pending'
+    end
   end
 
   # GET: /locations/5
-  get "/locations/profile/:id" do
-    @location = Location.find(params[:id])
+  get "/locations/:id" do
     @user = current_user
+    @location = Location.find(params[:id])
+    @checkins = CheckIn.where(location_id: @location.id)
+    @user_checkin = CheckIn.where(user_id: @user.id, location_id: params[:id])
+
     erb :'/locations/show'
+  end
+
+  post "/locations/:id" do
+    @user = current_user
+    checkin = params[:checkin]
+    @location = Location.find(params[:id])
+    @checkins = CheckIn.where(location_id: @location.id)
+    @user_checkin = CheckIn.where(user_id: @user.id, location_id: params[:id])
+    @checkin = CheckIn.find_or_create_by(user_id: @user.id, location_id: params[:id])
+    if checkin == "true" and @checkin.count == nil
+      @checkin.count = 1
+      @checkin.save
+      flash[:success] = "You have successfully checked in to #{@location.name}! This is your first check-in at this location! Keep coming back!"
+      erb :'/locations/show'
+    elsif checkin == "true" and @checkin.count > 0
+      @checkin.count = @checkin.count + 1
+      @checkin.save
+      flash[:success] = "You have successfully checked in to #{@location.name}! You have saved <strong>#{@checkin.count}</strong> plastic bottles! "
+      erb :'/locations/show'
+    else
+      
+      erb :'/locations/show'
+    end
   end
 
   # GET: /locations/5/edit

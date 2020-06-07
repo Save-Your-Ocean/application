@@ -1,12 +1,24 @@
-<div class="uk-section uk-section-secondary">
+<div class="uk-section">
       <div class="uk-container">
-        <h1><%= @user.username unless @user.name %></h1>
-        <h3 class="uk-margin-small-top">You have saved <strong class="uk-text-primary">1,213</strong> plastic bottles! Keep it up!</h3>
-        <p uk-margin>
-            <button class="uk-button uk-button-default uk-button-small">Edit Profile</button>
-        </p>
+
+<div class="uk-grid-divider uk-child-width-expand@s" uk-grid>
+  <div class="uk-child-width-expand@s" uk-grid>
+    <div class="uk-width-1-4@m uk-text-center">
+      <div uk-lightbox>
+        <a href="<%= @user.image %>"><img class="uk-preserve-width uk-border-circle" data-src="<%= @user.image %>" width="200" alt="" uk-img></a>
       </div>
     </div>
+    <div class="uk-width-auto@m uk-padding-medium-left">
+      <h1><%= @user.name %> (<%= @user.username %>)</h1>
+      <h3 class="uk-margin-small-top"><strong class="uk-text-primary"><%= @checkins.sum(:count) %></strong> bottles saved!</h3>
+      <p><%= @user.bio %></p>
+      <p uk-margin>
+          <button class="uk-button uk-button-primary uk-button-small">Edit Profile</button>
+      </p>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 <% if flash.has?(:error) %>
@@ -89,6 +101,7 @@
     <li><a href="#"><span class="uk-margin-small-right" uk-pagination-previous></span> Previous</a></li>
     <li class="uk-margin-auto-left"><a href="#">Next <span class="uk-margin-small-left" uk-pagination-next></span></a></li>
 </ul>
+</div>
 </div>
 </div>
 </div>

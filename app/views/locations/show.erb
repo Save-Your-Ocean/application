@@ -1,11 +1,50 @@
-<div class="uk-section uk-section-secondary">
+<div class="uk-section uk-section-muted">
       <div class="uk-container">
-        <h1><%= @location.name %></h1>
-        <p uk-margin>
-            <button class="uk-button uk-button-default uk-button-small">Check-in</button>
-        </p>
+        <div class="uk-child-width-expand@s" uk-grid>
+          <div class="uk-width-1-4@m">
+            <div uk-lightbox>
+              <a href="https://cafespaces.files.wordpress.com/2017/02/coffeeshop_company_2.jpg"><img data-src="https://cafespaces.files.wordpress.com/2017/02/coffeeshop_company_2.jpg" width="500" height="" alt="400" uk-img></a>
+            </div>
+          </div>
+          <div class="uk-width-auto@m uk-padding-medium-left">
+            <h1><%= @location.name %>
+            <span class="uk-badge uk-padding-small">
+              <%= @checkins.sum(:count) %> Total Check-ins
+            </span></h1>
+            <form method="post" action="/locations/<%= @location.id %>?checkin=true">
+            <p uk-margin>
+                <button type="submit" value="submit" class="uk-button uk-button-primary uk-button-small">Check-in (<%= @user_checkin.sum(:count) %>)</button>
+            </p>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
+
+<% if flash.has?(:error) %>
+<div class="uk-section uk-padding-small">
+  <div class="uk-container uk-container-small">
+<div class="cls:uk-animation-fade uk-alert-danger " uk-alert>
+    <a class="uk-alert-close" uk-close></a>
+    <h3>Sorry</h3>
+    <p><%= flash[:error] %></p>
+</div>
+</div>
+</div>
+  <% end %>
+  
+
+<% if flash.has?(:success) %>
+<div class="uk-section uk-padding-small">
+  <div class="uk-container uk-container-small">
+<div class="cls:uk-animation-fade uk-alert-success " uk-alert>
+    <a class="uk-alert-close" uk-close></a>
+    <h3>Successful Check-in!</h3>
+    <p><%= flash[:success] %></p>
+</div>
+</div>
+</div>
+  <% end %>
 
 <div class="uk-section">
   <div class="uk-container uk-margin">
@@ -15,7 +54,7 @@
     <thead>
         <tr>
             <th><img src="/images/testavatar.jpeg" class="uk-preserve-width uk-border-circle" width="50" height="50" style="padding-right: 4px;">
-    <a href="#" class="uk-text-middle"><%= @user.username %></a></th>
+    <a href="/users/profile/<%= @user.username %>" class="uk-text-middle"><%= @user.username %></a></th>
         </tr>
     </thead>
     <tbody>

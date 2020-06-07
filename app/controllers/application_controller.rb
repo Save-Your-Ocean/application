@@ -15,6 +15,9 @@ class ApplicationController < Sinatra::Base
 
   get "/" do
     settings.page_title = "Welcome to Save Your Ocean!"
+    @checkins = CheckIn.all
+    @locations = Location.all
+    @users = User.all
     erb :welcome
   end
 
