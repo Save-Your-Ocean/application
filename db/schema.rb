@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_06_055642) do
+ActiveRecord::Schema.define(version: 2020_06_06_231319) do
 
   create_table "check_ins", force: :cascade do |t|
     t.integer "user_id"
@@ -37,11 +37,9 @@ ActiveRecord::Schema.define(version: 2020_06_06_055642) do
 
   create_table "locations", force: :cascade do |t|
     t.string "name"
-    t.string "address"
+    t.string "street"
     t.string "city"
     t.string "country"
-    t.string "lat"
-    t.string "lng"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "approved"
@@ -51,6 +49,9 @@ ActiveRecord::Schema.define(version: 2020_06_06_055642) do
     t.string "image"
     t.string "twitter"
     t.string "facebook"
+    t.float "latitude"
+    t.float "longitude"
+    t.string "state"
   end
 
   create_table "roles", force: :cascade do |t|

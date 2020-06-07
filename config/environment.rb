@@ -9,6 +9,7 @@ ActiveRecord::Base.establish_connection(
 )
 require 'json'
 require 'rack-flash'
+require 'geocoder'
 
 require './app/controllers/application_controller'
 require_all 'app'

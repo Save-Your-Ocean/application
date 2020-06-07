@@ -16,6 +16,7 @@ gem 'rest-client'
 gem 'sinatra-cache'
 gem 'sysrandom'
 gem 'rack-flash3'
+gem 'geocoder'
 
 group :test do
   gem 'rspec'
