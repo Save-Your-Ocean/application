@@ -10,8 +10,8 @@
       <div class="uk-width-1-3@m uk-padding-medium-left">
         <h2 class="uk-text-center uk-heading-bullet">
           Bottles Saved
-          <span class="uk-label uk-label-success uk-padding-small uk-margin-small-right uk-margin-small-left">
-            <%= @checkins.sum(:count) %>
+          <span class="uk-label uk-label-success uk-margin-small-right uk-margin-small-left" style="font-size: 18px;">
+            <strong><%= @checkins.sum(:count) %></strong>
           </span>
         </h2>
       </div>
@@ -19,8 +19,8 @@
       <div class="uk-width-1-3@m uk-padding-medium-left">
         <h2 class="uk-text-center uk-heading-bullet">
           Businesses Added
-          <span class="uk-label uk-label-success uk-padding-small uk-margin-small-right uk-margin-small-left">
-              <%= @locations.length %>
+          <span class="uk-label uk-label-success uk-margin-small-right uk-margin-small-left" style="font-size: 18px;">
+              <strong><%= @locations.length %></strong>
           </span>
         </h2>
       </div>
@@ -28,8 +28,8 @@
       <div class="uk-width-1-3@m uk-padding-medium-left">
         <h2 class="uk-text-center uk-heading-bullet">
           Registered Users
-          <span class="uk-label uk-label-success uk-padding-small uk-margin-small-right uk-margin-small-left">
-            <%= @users.length %>
+          <span class="uk-label uk-label-success uk-margin-small-right uk-margin-small-left" style="font-size: 18px;">
+            <strong><%= @users.length %></strong>
           </span>
         </h2>
       </div>

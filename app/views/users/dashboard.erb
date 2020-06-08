@@ -12,8 +12,12 @@
   <table class="uk-table">
     <thead>
         <tr>
-            <th><img src="/images/testavatar.jpeg" class="uk-preserve-width uk-border-circle" width="50" height="50" style="padding-right: 4px;">
-    <a href="/users/profile/<%= @user.username %>" class="uk-text-middle"><%= @user.username %></a></th>
+            <th>
+                <a href="/users/profile/<%= @user.username %>" class="uk-text-middle">
+                  <img src="<%= @user.image %>" class="uk-preserve-width uk-border-circle" width="50" height="50" style="padding-right: 4px;">
+                  <%= @user.username %>
+                </a>
+              </th>
         </tr>
     </thead>
     <tbody>
