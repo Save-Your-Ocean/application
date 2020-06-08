@@ -18,6 +18,30 @@ We have built an application that allows users to browse nearby locations where 
 
 So, what are you waiting for? [Join](https://saveyourocean.com/users/register) Save Your Ocean and become an *Ocean Hero* today!
 
+## Install
+Clone this repository.
+
+Enter the application directory: `cd /application`
+
+Install the required gems: `bundle install`
+
+Setup the database: `rake db:migrate`
+
+Start the shotgun server: `shotgun`
+
+Register an account then to set it as admin do:
+
+```
+rake console
+
+u = User.find(id=1)
+u.role_id = 1
+u.password = "your password"
+u.save
+```
+Now this account can approve or deny new locations.
+
+
 ## Team
 - Huong Hoang - CEO
 - Nolan Mayersky - Software Engineer (@nolyoi)
