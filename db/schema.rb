@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_06_231319) do
+ActiveRecord::Schema.define(version: 2020_06_08_041601) do
 
   create_table "check_ins", force: :cascade do |t|
     t.integer "user_id"
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 2020_06_06_231319) do
     t.float "latitude"
     t.float "longitude"
     t.string "state"
+    t.string "website"
   end
 
   create_table "roles", force: :cascade do |t|

@@ -17,6 +17,7 @@ gem 'sinatra-cache'
 gem 'sysrandom'
 gem 'rack-flash3'
 gem 'geocoder'
+gem 'will_paginate'
 
 group :test do
   gem 'rspec'
