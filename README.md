@@ -22,9 +22,10 @@ So, what are you waiting for? [Join](https://saveyourocean.com/users/register) S
 - Huong Hoang - CEO
 - Nolan Mayersky - Software Engineer (@nolyoi)
 
-## Links
+## Meta
 
 *Visit our website at:* https://saveyourocean.com/
 
 *Like us on Facebook:* https://facebook.com/saveyourocean
 
+<contact@saveyourocean.com>
