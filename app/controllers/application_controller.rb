@@ -7,6 +7,7 @@ class ApplicationController < Sinatra::Base
     set :site_name, 'Save Your Ocean'
     set :page_title, 'Save Your Ocean'
     set :public_folder, 'public'
+    set :uploads_foler, 'public/uploads'
     set :views, 'app/views'
     set :error_msg, 'Sorry'
     enable :sessions
