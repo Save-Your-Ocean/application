@@ -18,6 +18,7 @@ gem 'sysrandom'
 gem 'rack-flash3'
 gem 'geocoder'
 gem 'will_paginate'
+gem 'mail'
 
 group :test do
   gem 'rspec'
