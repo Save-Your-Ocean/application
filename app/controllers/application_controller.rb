@@ -36,15 +36,11 @@ class ApplicationController < Sinatra::Base
     end
 
     def is_admin?
-      @current_user.role_id == 1 ? true : false
+      current_user.role_id == 1 ? true : false 
     end
 
     def current_user
-      @current_user = User.find_by(id: session[:user_id])
-    end
-
-    def protect
-      redirect to '/errors/login' unless @user.role.id = 1
+      @current_user ||= User.find_by(id: session[:user_id])
     end
 
   end
