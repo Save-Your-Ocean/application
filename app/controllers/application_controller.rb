@@ -1,6 +1,7 @@
 require './config/environment'
 
 class ApplicationController < Sinatra::Base
+  register WillPaginate::Sinatra
 
   configure do
     set :site_name, 'Save Your Ocean'
@@ -31,6 +32,10 @@ class ApplicationController < Sinatra::Base
 
     def logged_in?
       !!session[:user_id]
+    end
+
+    def is_admin?
+      @current_user.role_id == 1 ? true : false
     end
 
     def current_user
