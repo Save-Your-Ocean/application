@@ -1,5 +1,27 @@
 class UsersController < ApplicationController
 
+  get '/users/login' do
+    settings.page_title = 'User Login'
+
+    if logged_in?
+      redirect to "/users/login"
+    else
+      erb :'/users/login'
+    end
+  end
+
+  post '/users/login' do
+    @user = User.find_by(username: params[:username])
+    if @user && @user.authenticate(params[:password])
+      session[:user_id] = @user.id
+
+      redirect to "/users/dashboard"
+    else
+      flash[:error] = "Double check your login details!"
+      erb :"/users/login"
+    end
+  end
+
   get '/users/register' do
     settings.page_title = 'User Registration'
     if !logged_in?
@@ -23,6 +45,7 @@ class UsersController < ApplicationController
   get "/users/profile/:username" do
     @user = User.find_by(username: params[:username])
     @checkins = CheckIn.where(user_id: @user.id)
+    @user_comments = Comment.where(:user_id => @user.id).paginate(:page => params[:page]).order('id DESC')
     erb :'/users/show'
   end
 
@@ -34,28 +57,6 @@ class UsersController < ApplicationController
       redirect to '/users/login'
     else
       erb :'/users/dashboard'
-    end
-  end
-
-  get '/users/login' do
-    settings.page_title = 'User Login'
-    @user = current_user
-    if logged_in?
-      redirect to "/users/login"
-    else
-      erb :'/users/login'
-    end
-  end
-
-  post '/users/login' do
-    @user = User.find_by(username: params[:username])
-    if @user && @user.authenticate(params[:password])
-      session[:user_id] = @user.id
-
-      redirect to "/users/dashboard"
-    else
-      flash[:error] = "Double check your login details!"
-      erb :"/users/login"
     end
   end
   
