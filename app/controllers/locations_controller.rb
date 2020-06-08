@@ -78,6 +78,7 @@ class LocationsController < ApplicationController
     else
       erb :'/locations/show'
     end
+
     erb :'/locations/show'
   end
 

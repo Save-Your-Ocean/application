@@ -12,8 +12,7 @@
 /test/tmp/
 /test/version_tmp/
 /tmp/
-/db/*
-!/db/migrate/
+
 
 # Used by dotenv library to load environment variables.
 # .env
@@ -4191,3 +4190,5 @@ vendor/cache/ruby/2.7.0/specifications/unf_ext-0.0.7.7.gemspec
 vendor/cache/ruby/2.7.0/specifications/unf-0.1.4.gemspec
 vendor/cache/ruby/2.7.0/specifications/xpath-3.2.0.gemspec
 vendor/cache/ruby/2.7.0/specifications/zeitwerk-2.3.0.gemspec
+
+Gemfile.lock
