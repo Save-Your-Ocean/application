@@ -1,51 +1,51 @@
-<div class="uk-section uk-section-muted">
-      <div class="uk-container">
-        <h1>Pending Location Submissions</h1>
-        <h3>There are <strong class="uk-text-primary"><%= @locations.length %></strong> locations pending approval</h3>
-      </div>
-    </div>
-
-<div class="uk-section">
-  <div class="uk-container uk-margin">
-<div class="uk-width-expand@m">
-  <div class="uk-card uk-card-default uk-card-body">
-    <table class="uk-table uk-table-hover uk-table-middle uk-table-divider">
-        <thead>
-            <tr>
-      <th scope="uk-text-center"></th>
-      <th scope="uk-text-center">Location</th>
-      <th scope="uk-text-center">Address</th>
-      <th scope="uk-text-center">City</th>
-      <th scope="uk-text-center">Country</th>
-      <th scope="uk-text-center">User</th>
-      <th scope="uk-text-center">Approve?</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @locations.each do |location| %> 
-    <form class="uk-form" method="post" action="/locations/pending/<%= location.id %>">
-      <tr>
-        <td class="uk-text-center"><img class="uk-preserve-width uk-border-rounded" src="/images/testavatar.jpeg" width="35" alt=""></td>
-        <td><a href="/locations/<%= location.id %>" alt="<%= location.name %>"><%= location.name %></a></td>
-        <td class="uk-text-center"><%= location.street %></td>
-        <td class="uk-text-center"><%= location.city %></td>
-        <td class="uk-text-center"><%= location.country %></td>
-        <td class="uk-text-center"><a href="/users/profile/<%= location.users.first.username %>"><%= location.users.first.username %></a></td>
-        <td class="uk-text-center"><div class="uk-button-group uk-float-right">
-    <button type="submit" value="true" name="approved" class="uk-button uk-button-text uk-button-small uk-width-1-2 uk-margin-small-right">Accept</button> |  <button type="submit" value="false" name="approved" class="uk-button uk-button-text uk-margin-small-left uk-width-1-2">Deny</button>
-    </div></td>
-      </tr>
-          </form>
-
-    <% end %>
-  </tbody>
-</table>
-<ul class="uk-pagination">
-    <li><a href="#"><span class="uk-margin-small-right" uk-pagination-previous></span> Previous</a></li>
-    <li class="uk-margin-auto-left"><a href="#">Next <span class="uk-margin-small-left" uk-pagination-next></span></a></li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-</div>
+		<div class="uk-section uk-section-muted">
+			<div class="uk-container">
+				<h1>Pending Location Submissions</h1>
+				<h3>There are <strong class="uk-text-primary"><%= @locations.length %></strong> locations pending approval</h3>
+			</div>
+		</div>
+		<div class="uk-section">
+			<div class="uk-container uk-margin">
+				<div class="uk-width-expand@m">
+					<div class="uk-card uk-card-default uk-card-body">
+						<table class="uk-table uk-table-hover uk-table-middle uk-table-divider">
+							<thead>
+								<tr>
+									<th scope="uk-text-center"></th>
+									<th scope="uk-text-center">Location</th>
+									<th scope="uk-text-center">Address</th>
+									<th scope="uk-text-center">City</th>
+									<th scope="uk-text-center">Country</th>
+									<th scope="uk-text-center">User</th>
+									<th scope="uk-text-center">Approve?</th>
+								</tr>
+							</thead>
+							<tbody>
+								<% @locations.each do |location| %>
+									<form class="uk-form" method="post" action="/locations/pending/<%= location.id %>">
+										<tr>
+											<td class="uk-text-center"><img class="uk-preserve-width uk-border-rounded" src="/images/testavatar.jpeg" width="35" alt=""></td>
+											<td><a href="/locations/<%= location.id %>" alt="<%= location.name %>"><%= location.name %></a></td>
+											<td class="uk-text-center"><%= location.street %></td>
+											<td class="uk-text-center"><%= location.city %></td>
+											<td class="uk-text-center"><%= location.country %></td>
+											<td class="uk-text-center"><a href="/users/profile/<%= location.users.first.username %>"><%= location.users.first.username %></a></td>
+											<td class="uk-text-center">
+												<div class="uk-button-group uk-float-right">
+													<button type="submit" value="true" name="approved" class="uk-button uk-button-text uk-button-small uk-width-1-2 uk-margin-small-right">Accept</button> |  <button type="submit" value="false" name="approved" class="uk-button uk-button-text uk-margin-small-left uk-width-1-2">Deny</button>
+												</div>
+											</td>
+										</tr>
+									</form>
+								<% end %>
+							</tbody>
+						</table>
+						<ul class="uk-pagination">
+							<li><a href="#"><span class="uk-margin-small-right" uk-pagination-previous></span> Previous</a></li>
+							<li class="uk-margin-auto-left"><a href="#">Next <span class="uk-margin-small-left" uk-pagination-next></span></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>

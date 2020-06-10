@@ -1,119 +1,110 @@
-<div class="uk-section uk-section-muted uk-padding-top">
-  <div class="uk-container">
-    <div class="uk-grid-divider uk-child-width-expand@s" uk-grid>
-      <div class="uk-child-width-expand@s" uk-grid>
-        <div class="uk-width-1-4@m uk-text-center">
-          <div uk-lightbox>
-            <a href="<%= @user.image %>"><img class="uk-preserve-width uk-border-circle" data-src="<%= @user.image %>" width="200" alt="" uk-img></a>
-          </div>
-        </div>
-        <div class="uk-width-auto@m uk-padding-medium-left">
-          <h1><%= @user.name %> (<%= @user.username %>)</h1>
-          <h3 class="uk-margin-small-top"><i class="fas fa-wine-bottle"></i> <strong class="uk-text-primary"><%= @checkins.sum(:count) %></strong> bottles saved!</h3>
-          <p><i class="far fa-id-card"></i> <%= @user.bio %></p>
-          <p><a href="https://twitter.com/<%= @user.twitter %>"><i class="fab fa-twitter uk-text-middle"></i> <%= @user.twitter %></a> <a href="https://facebook.com/<%= @user.facebook %>"><i class="fab fa-facebook uk-text-middle uk-margin-small-left"></i> <%= @user.facebook %></a></p>
-          <% if current_user.username == @user.username %>
-          <p uk-margin>
-              <a class="uk-button uk-button-primary uk-button-small" href="/users/<%= current_user.username %>/edit">Edit Profile</a>
-          </p>
-          <% end %>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="uk-section">
-  <div class="uk-container uk-margin">
-
-    <% if flash.has?(:error) %>
-          <div class="cls:uk-animation-fade uk-alert-danger " uk-alert>
-              <a class="uk-alert-close" uk-close></a>
-              <h3>Sorry</h3>
-              <p><%= flash[:error] %></p>
-          </div>
-        </div>
-      </div>
-    <% end %>
-
-      <div class="uk-width-expand@m">
-        <h2 class="uk-heading-bullet uk-padding-bottom">Locations Submitted</h2>
-          <div class="uk-card uk-card-default uk-card-body">
-            <table class="uk-table uk-table-hover uk-table-middle uk-table-divider">
-              <thead>
-                <tr>
-                  <th scope="uk-table-shrink uk-text-center"></th>
-                  <th scope="uk-table-shrink uk-text-center">Location</th>
-                  <th scope="uk-table-shrink uk-text-center">Address</th>
-                  <th scope="uk-table-shrink uk-text-center">City</th>
-                  <th scope="uk-table-shrink uk-text-center">Country</th>
-                  <th scope="uk-table-shrink uk-text-right">Approved?</th>
-                  <th scope="uk-table-shrink uk-text-right">Edit</th>
-                </tr>
-              </thead>
-              <tbody>
-                
-                <% @user.managed_locations.each do |location| %> 
-                  <tr>
-                    <td class="uk-text-center"><img class="uk-preserve-width uk-border-rounded" src="/images/testavatar.jpeg" width="50" alt=""></td>
-                    <td><a href="/locations/<%= location.id %>" alt="<%= location.name %>"><%= location.name %></a></td>
-                    <td class="uk-text-center"><%= location.street %></td>
-                    <td class="uk-text-center"><%= location.city %></td>
-                    <td class="uk-text-center"><%= location.country %></td>
-                    <% if location.approved == true%>
-                    <td class="uk-text-center"><button class="uk-button uk-button-primary uk-width-1-1">Yes</button></td>
-                    <% elsif location.approved == false %>
-                    <td class="uk-text-center"><button class="uk-button uk-button-danger uk-width-1-1">No</button></td>
-                    <% else %>
-                    <td class="uk-text-center"><button class="uk-button uk-button-secondary uk-width-1-1">Pending</button></td>
-                    <% end %>
-                  </tr>
-                <% end %>
-              </tbody>
-            </table>
-          </div>
-
-
-      <h2 class="uk-heading-bullet uk-padding-bottom">Latest Comments</h2>  
-        <div class="uk-card uk-card-default uk-card-body uk-margin-top">
-          <ul class="uk-comment-list">
-            
-            <% @user_comments.each do |comment| %>
-              <li>
-                <article class="uk-comment uk-visible-toggle" tabindex="-1">
-                  <header class="uk-comment-header uk-position-relative">
-                    <div class="uk-grid-medium uk-flex-middle" uk-grid>
-                      <div class="uk-width-auto">
-                          <a href="/users/profile/<%= @user.username %>"><img class="uk-comment-avatar uk-border-circle" src="<%= @user.image %>" width="80" height="80" alt=""></a>
-                      </div>
-                      <div class="uk-width-expand">
-                          <h4 class="uk-comment-title uk-margin-remove"><a class="uk-link-reset" href="/users/profile/<%= @user.username %>"><%= @user.username %></a></h4>
-                          <p class="uk-comment-meta uk-margin-remove-vertical"><a class="uk-link-reset" href="#">@ <a href="/locations/<%= comment.location.id %>"><%= comment.location.name %></a></p>
-                          <p class="uk-comment-meta uk-margin-remove-top"><a class="uk-link-reset" href="#"><%= comment.created_at.strftime("On %A, %b. %e, %Y at %I:%M%p") %></a></p>
-                      </div>
-                    </div>
-                  </header>
-                  <div class="uk-comment-body">
-                    <p><%= comment.body %></p>
-                  </div>
-                </article>
-              </li>
-              <hr class="uk-margin-large-top">
-            <% end %>
-          </ul>
-      
-
-        <ul class="uk-pagination uk-float-right uk-margin">
-          <li>
-            <%= will_paginate @user_comments %>
-            <%# <a href="#"><span class="uk-margin-small-right" uk-pagination-previous></span> Previous</a>
+		<div class="uk-section uk-section-muted uk-padding-top">
+			<div class="uk-container">
+				<div class="uk-grid-divider uk-child-width-expand@s" uk-grid>
+					<div class="uk-child-width-expand@s" uk-grid>
+						<div class="uk-width-1-4@m uk-text-center">
+							<div uk-lightbox>
+								<a href="<%= @user.image %>"><img class="uk-preserve-width uk-border-circle" data-src="<%= @user.image %>" width="200" alt="" uk-img></a>
+							</div>
+						</div>
+						<div class="uk-width-auto@m uk-padding-medium-left">
+							<h1><%= @user.name %> (<%= @user.username %>)</h1>
+							<h3 class="uk-margin-small-top"><i class="fas fa-wine-bottle"></i> <strong class="uk-text-primary"><%= @checkins.sum(:count) %></strong> bottles saved!</h3>
+							<p><i class="far fa-id-card"></i> <%= @user.bio %></p>
+							<p><a href="https://twitter.com/<%= @user.twitter %>"><i class="fab fa-twitter uk-text-middle"></i> <%= @user.twitter %></a> <a href="https://facebook.com/<%= @user.facebook %>"><i class="fab fa-facebook uk-text-middle uk-margin-small-left"></i> <%= @user.facebook %></a></p>
+							<% if current_user.username == @user.username %>
+								<p uk-margin>
+									<a class="uk-button uk-button-primary uk-button-small" href="/users/<%= current_user.username %>/edit">Edit Profile</a>
+								</p>
+							<% end %>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="uk-section">
+			<div class="uk-container uk-margin">
+				<% if flash.has?(:error) %>
+					<div class="cls:uk-animation-fade uk-alert-danger " uk-alert>
+						<a class="uk-alert-close" uk-close></a>
+						<h3>Sorry</h3>
+						<p><%= flash[:error] %></p>
+					</div>
+				</div>
+			</div>
+		<% end %>
+		<div class="uk-width-expand@m">
+			<h2 class="uk-heading-bullet uk-padding-bottom">Locations Submitted</h2>
+			<div class="uk-card uk-card-default uk-card-body">
+				<table class="uk-table uk-table-hover uk-table-middle uk-table-divider">
+					<thead>
+						<tr>
+							<th scope="uk-table-shrink uk-text-center"></th>
+							<th scope="uk-table-shrink uk-text-center">Location</th>
+							<th scope="uk-table-shrink uk-text-center">Address</th>
+							<th scope="uk-table-shrink uk-text-center">City</th>
+							<th scope="uk-table-shrink uk-text-center">Country</th>
+							<th scope="uk-table-shrink uk-text-right">Approved?</th>
+							<th scope="uk-table-shrink uk-text-right">Edit</th>
+						</tr>
+					</thead>
+					<tbody>
+						<% @user.managed_locations.each do |location| %>
+							<tr>
+								<td class="uk-text-center"><img class="uk-preserve-width uk-border-rounded" src="/images/testavatar.jpeg" width="50" alt=""></td>
+								<td><a href="/locations/<%= location.id %>" alt="<%= location.name %>"><%= location.name %></a></td>
+								<td class="uk-text-center"><%= location.street %></td>
+								<td class="uk-text-center"><%= location.city %></td>
+								<td class="uk-text-center"><%= location.country %></td>
+								<% if location.approved == true%>
+									<td class="uk-text-center"><button class="uk-button uk-button-primary uk-width-1-1">Yes</button></td>
+								<% elsif location.approved == false %>
+									<td class="uk-text-center"><button class="uk-button uk-button-danger uk-width-1-1">No</button></td>
+								<% else %>
+									<td class="uk-text-center"><button class="uk-button uk-button-secondary uk-width-1-1">Pending</button></td>
+								<% end %>
+							</tr>
+						<% end %>
+					</tbody>
+				</table>
+			</div>
+			<h2 class="uk-heading-bullet uk-padding-bottom">Latest Comments</h2>
+			<div class="uk-card uk-card-default uk-card-body uk-margin-top">
+				<ul class="uk-comment-list">
+					<% @user_comments.each do |comment| %>
+						<li>
+							<article class="uk-comment uk-visible-toggle" tabindex="-1">
+								<header class="uk-comment-header uk-position-relative">
+									<div class="uk-grid-medium uk-flex-middle" uk-grid>
+										<div class="uk-width-auto">
+											<a href="/users/profile/<%= @user.username %>"><img class="uk-comment-avatar uk-border-circle" src="<%= @user.image %>" width="80" height="80" alt=""></a>
+										</div>
+										<div class="uk-width-expand">
+											<h4 class="uk-comment-title uk-margin-remove"><a class="uk-link-reset" href="/users/profile/<%= @user.username %>"><%= @user.username %></a></h4>
+											<p class="uk-comment-meta uk-margin-remove-vertical"><a class="uk-link-reset" href="#">@ <a href="/locations/<%= comment.location.id %>"><%= comment.location.name %></a></p>
+												<p class="uk-comment-meta uk-margin-remove-top"><a class="uk-link-reset" href="#"><%= comment.created_at.strftime("On %A, %b. %e, %Y at %I:%M%p") %></a></p>
+											</div>
+										</div>
+									</header>
+									<div class="uk-comment-body">
+										<p><%= comment.body %></p>
+									</div>
+								</article>
+							</li>
+							<hr class="uk-margin-large-top">
+						<% end %>
+					</ul>
+					<ul class="uk-pagination uk-float-right uk-margin">
+						<li>
+							<%= will_paginate @user_comments %>
+							<%# <a href="#"><span class="uk-margin-small-right" uk-pagination-previous></span> Previous</a>
           </li>
           <li class="uk-margin-auto-left">
             <a href="#">Next <span class="uk-margin-small-left" uk-pagination-next></span></a> %>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
-</div>
-

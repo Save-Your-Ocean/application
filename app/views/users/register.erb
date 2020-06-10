@@ -1,85 +1,77 @@
-<div class="uk-section uk-section-primary uk-padding">
-  <div class="uk-container uk-light">
-    <h1>Join Save Your Ocean!</h1>
-    <h3>Help us keep the planet clean! Find refillable water and beverage locations near you! Fill out the form below to join today!</h3>
-  </div>
-</div>
-
-<% if flash.has?(:error) %>
-    <div class="uk-section uk-padding-small">
-      <div class="uk-container uk-container-small">
-    <div class="cls:uk-animation-fade uk-alert-danger " uk-alert>
-        <a class="uk-alert-close" uk-close></a>
-        <h3>Sorry</h3>
-        <p><%= flash[:error] %></p>
-    </div>
-    </div>
-    </div>
-     <% end %>
-
-<div class="uk-section">
-  <div class="uk-container uk-container-xsmall uk-align-center">
-    <div class="uk-card uk-card-body uk-width-1-1">
-      <form class="uk-form-horizontal uk-margin-large" method="post" action="/users/register">
-        <div class="uk-margin">
-          <label class="uk-form-label" for="form-horizontal-text">Username</label>
-          <div class="uk-form-controls">
-              <input class="uk-input uk-form-large" id="form-horizontal-text" type="text" name="username" placeholder="example-user">
-          </div>
-        </div>
-        <div class="uk-margin">
-          <label class="uk-form-label" for="form-horizontal-text">Display Name</label>
-          <div class="uk-form-controls">
-              <input class="uk-input uk-form-large" id="form-horizontal-text" type="text" name="name" placeholder="Tom Thomas">
-          </div>
-        </div>
-
-        <div class="uk-margin">
-          <label class="uk-form-label" for="form-horizontal-text">Twitter @Handle</label></label>
-          <div class="uk-form-controls">
-              <input class="uk-input uk-form-large" id="form-horizontal-text" type="text" name="twitter" placeholder="@twitter">
-          </div>
-        </div>
-
-        <div class="uk-margin">
-          <label class="uk-form-label" for="form-horizontal-text">Facebook</label>
-          <div class="uk-form-controls">
-              <input class="uk-input uk-form-large" id="form-horizontal-text" type="text" name="facebook" placeholder="fburl">
-          </div>
-        </div>
-
-        <div class="uk-margin">
-          <label class="uk-form-label" for="form-horizontal-text">Avatar*</label>
-          <div class="uk-form-controls">
-              <input class="uk-input uk-form-large" id="form-horizontal-text" type="text" name="image" placeholder="Direct link to image">
-          </div>
-        </div>
-
-        <div class="uk-margin">
-          <label class="uk-form-label" for="form-horizontal-text">Password</label>
-          <div class="uk-form-controls">
-              <input class="uk-input uk-form-large" id="form-horizontal-text" type="password" name="password" placeholder="password">
-          </div>
-        </div>
-
-        <div class="uk-margin">
-          <label class="uk-form-label" for="form-horizontal-text">Confirm Password</label>
-          <div class="uk-form-controls">
-              <input class="uk-input uk-form-large" id="form-horizontal-text" type="password" name="password_confirmation" placeholder="password">
-          </div>
-        </div>
-
-        <div class="uk-margin">
-          <label class="uk-form-label" for="form-horizontal-text">Short Bio</label>
-          <div class="uk-form-controls">
-              <textarea class="uk-textarea" id="form-horizontal-text" name="bio" placeholder="Short bio" rows="4"></textarea>
-          </div>
-        </div>
-    <p>You can upload a photo at a website like <a href="https://imgbb.com">imgBB</a> and paste the direct link into this form.</p>
-    <div class="uk-button-group uk-float-right">
-    <button type="submit" value="submit" class="uk-button uk-button-primary uk-width-1-1 uk-margin-small-right">Submit</button> <button type="reset" value="reset" class="uk-button uk-button-danger uk-width-1-1">Reset</button>
-    </div>
-</form>
-    </div>
-</div>
-    </div>
+		<div class="uk-section uk-section-primary uk-padding">
+			<div class="uk-container uk-light">
+				<h1>Join Save Your Ocean!</h1>
+				<h3>Help us keep the planet clean! Find refillable water and beverage locations near you! Fill out the form below to join today!</h3>
+			</div>
+		</div>
+		<% if flash.has?(:error) %>
+			<div class="uk-section uk-padding-small">
+				<div class="uk-container uk-container-small">
+					<div class="cls:uk-animation-fade uk-alert-danger " uk-alert>
+						<a class="uk-alert-close" uk-close></a>
+						<h3>Sorry</h3>
+						<p><%= flash[:error] %></p>
+					</div>
+				</div>
+			</div>
+		<% end %>
+		<div class="uk-section">
+			<div class="uk-container uk-container-xsmall uk-align-center">
+				<div class="uk-card uk-card-body uk-width-1-1">
+					<form class="uk-form-horizontal uk-margin-large" method="post" action="/users/register">
+						<div class="uk-margin">
+							<label class="uk-form-label" for="form-horizontal-text">Username</label>
+							<div class="uk-form-controls">
+								<input class="uk-input uk-form-large" id="form-horizontal-text" type="text" name="username" placeholder="example-user">
+							</div>
+						</div>
+						<div class="uk-margin">
+							<label class="uk-form-label" for="form-horizontal-text">Display Name</label>
+							<div class="uk-form-controls">
+								<input class="uk-input uk-form-large" id="form-horizontal-text" type="text" name="name" placeholder="Tom Thomas">
+							</div>
+						</div>
+						<div class="uk-margin">
+							<label class="uk-form-label" for="form-horizontal-text">Twitter @Handle</label></label>
+						<div class="uk-form-controls">
+							<input class="uk-input uk-form-large" id="form-horizontal-text" type="text" name="twitter" placeholder="@twitter">
+						</div>
+					</div>
+					<div class="uk-margin">
+						<label class="uk-form-label" for="form-horizontal-text">Facebook</label>
+						<div class="uk-form-controls">
+							<input class="uk-input uk-form-large" id="form-horizontal-text" type="text" name="facebook" placeholder="fburl">
+						</div>
+					</div>
+					<div class="uk-margin">
+						<label class="uk-form-label" for="form-horizontal-text">Avatar*</label>
+						<div class="uk-form-controls">
+							<input class="uk-input uk-form-large" id="form-horizontal-text" type="text" name="image" placeholder="Direct link to image">
+						</div>
+					</div>
+					<div class="uk-margin">
+						<label class="uk-form-label" for="form-horizontal-text">Password</label>
+						<div class="uk-form-controls">
+							<input class="uk-input uk-form-large" id="form-horizontal-text" type="password" name="password" placeholder="password">
+						</div>
+					</div>
+					<div class="uk-margin">
+						<label class="uk-form-label" for="form-horizontal-text">Confirm Password</label>
+						<div class="uk-form-controls">
+							<input class="uk-input uk-form-large" id="form-horizontal-text" type="password" name="password_confirmation" placeholder="password">
+						</div>
+					</div>
+					<div class="uk-margin">
+						<label class="uk-form-label" for="form-horizontal-text">Short Bio</label>
+						<div class="uk-form-controls">
+							<textarea class="uk-textarea" id="form-horizontal-text" name="bio" placeholder="Short bio" rows="4"></textarea>
+						</div>
+					</div>
+					<p>You can upload a photo at a website like <a href="https://imgbb.com">imgBB</a> and paste the direct link into this form.</p>
+					<div class="uk-button-group uk-float-right">
+						<button type="submit" value="submit" class="uk-button uk-button-primary uk-width-1-1 uk-margin-small-right">Submit</button> <button type="reset" value="reset" class="uk-button uk-button-danger uk-width-1-1">Reset</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>

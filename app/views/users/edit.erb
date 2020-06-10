@@ -1,97 +1,81 @@
-<div class="uk-section uk-section-primary uk-padding ">
-  <div class="uk-container uk-light">
-    <h1>Edit Profile</h1>
-    <h3>Update your profile details below! Don't forget to enter your current password.</h3>
-  </div>
-</div>
-
-
-<div class="uk-section uk-padding-remove-top uk-margin-small-top">
-  <div class="uk-container uk-container-xsmall uk-align-center uk-padding-small-top">
-
-    <% if flash.has?(:error) %>
-      <div class="cls:uk-animation-fade uk-alert-danger" uk-alert>
-          <a class="uk-alert-close" uk-close></a>
-          <h3>Sorry</h3>
-          <p><%= flash[:error] %></p>
-      </div>
-
-    <% end %>
-
-    <% if flash.has?(:success) %>
-      <div class="cls:uk-animation-fade uk-alert-success" uk-alert>
-          <a class="uk-alert-close" uk-close></a>
-          <h3>Success!</h3>
-          <p><%= flash[:success] %></p>
-      </div>
-    <% end %>
-
-    <div class="uk-card uk-card-body uk-width-1-1">
-      <form class="uk-form-horizontal uk-margin-large" method="post" action="/users/<%= current_user.username %>/edit">
-      <input id="hidden" type="hidden" name="_method" value="patch">
-        <div class="uk-margin">
-          <label class="uk-form-label" for="form-horizontal-text">E-mail Address</label>
-            <div class="uk-form-controls">
-              <input class="uk-input uk-form-large" id="form-horizontal-text" type="text" name="email" value="<%= current_user.email %>" placeholder="<%= current_user.email %>">
-            </div>
-        </div>
-       
-        <div class="uk-margin">
-          <label class="uk-form-label" for="form-horizontal-text">Display Name</label>
-            <div class="uk-form-controls">
-              <input class="uk-input uk-form-large" id="form-horizontal-text" type="text" name="name" value="<%= current_user.name %>" placeholder="<%= current_user.name %>">
-            </div>
-        </div>
-
-        <div class="uk-margin">
-          <label class="uk-form-label" for="form-horizontal-text">Twitter @Handle</label></label>
-            <div class="uk-form-controls">
-              <input class="uk-input uk-form-large" id="form-horizontal-text" type="text" name="twitter" value="<%= current_user.twitter %>" placeholder="<%= current_user.twitter %>">
-            </div>
-        </div>
-
-        <div class="uk-margin">
-          <label class="uk-form-label" for="form-horizontal-text">Facebook</label>
-            <div class="uk-form-controls">
-              <input class="uk-input uk-form-large" id="form-horizontal-text" type="text" name="facebook" value="<%= current_user.facebook %>" placeholder="<%= current_user.facebook %>">
-            </div>
-        </div>
-
-        <div class="uk-margin">
-          <label class="uk-form-label" for="form-horizontal-text">Avatar*</label>
-            <div class="uk-form-controls">
-              <input class="uk-input uk-form-large" id="form-horizontal-text" type="text" name="image" value="<%= current_user.image %>" placeholder="<%= current_user.image %>">
-            </div>
-        </div>
-
-        <div class="uk-margin">
-          <label class="uk-form-label" for="form-horizontal-text">Password (Required!)</label>
-            <div class="uk-form-controls">
-              <input class="uk-input uk-form-large" id="form-horizontal-text" type="password" value="<%= current_user.password %>" name="password" placeholder="password">
-            </div>
-        </div>
-
-        <div class="uk-margin">
-          <label class="uk-form-label" for="form-horizontal-text">Confirm Password</label>
-            <div class="uk-form-controls">
-              <input class="uk-input uk-form-large" id="form-horizontal-text" type="password" value="<%= current_user.password %>" name="password_confirmation" placeholder="password">
-            </div>
-        </div>
-
-        <div class="uk-margin">
-          <label class="uk-form-label" for="form-horizontal-text">Short Bio</label>
-            <div class="uk-form-controls">
-              <textarea class="uk-textarea" id="form-horizontal-text" name="bio" value="<%= current_user.bio %>" placeholder="<%= current_user.bio %>" rows="4"></textarea>
-            </div>
-        </div>
-
-        <p>You can upload a photo at a website like <a href="https://imgbb.com">imgBB</a> and paste the direct link into this form.</p>
-
-        <div class="uk-button-group uk-float-right">
-          <button type="reset" value="reset" class="uk-button uk-button-danger uk-width-1-2 uk-margin-small-right">Reset</button> <button type="submit" value="submit" class="uk-button uk-button-primary uk-width-1-2">Submit</button> 
-        </div>
-        
-      </form>
-    </div>
-  </div>
-</div>
+		<div class="uk-section uk-section-primary uk-padding ">
+			<div class="uk-container uk-light">
+				<h1>Edit Profile</h1>
+				<h3>Update your profile details below! Don't forget to enter your current password.</h3>
+			</div>
+		</div>
+		<div class="uk-section uk-padding-remove-top uk-margin-small-top">
+			<div class="uk-container uk-container-xsmall uk-align-center uk-padding-small-top">
+				<% if flash.has?(:error) %>
+					<div class="cls:uk-animation-fade uk-alert-danger" uk-alert>
+						<a class="uk-alert-close" uk-close></a>
+						<h3>Sorry</h3>
+						<p><%= flash[:error] %></p>
+					</div>
+				<% end %>
+				<% if flash.has?(:success) %>
+					<div class="cls:uk-animation-fade uk-alert-success" uk-alert>
+						<a class="uk-alert-close" uk-close></a>
+						<h3>Success!</h3>
+						<p><%= flash[:success] %></p>
+					</div>
+				<% end %>
+				<div class="uk-card uk-card-body uk-width-1-1">
+					<form class="uk-form-horizontal uk-margin-large" method="post" action="/users/<%= current_user.username %>/edit">
+						<input id="hidden" type="hidden" name="_method" value="patch">
+						<div class="uk-margin">
+							<label class="uk-form-label" for="form-horizontal-text">E-mail Address</label>
+							<div class="uk-form-controls">
+								<input class="uk-input uk-form-large" id="form-horizontal-text" type="text" name="email" value="<%= current_user.email %>" placeholder="<%= current_user.email %>">
+							</div>
+						</div>
+						<div class="uk-margin">
+							<label class="uk-form-label" for="form-horizontal-text">Display Name</label>
+							<div class="uk-form-controls">
+								<input class="uk-input uk-form-large" id="form-horizontal-text" type="text" name="name" value="<%= current_user.name %>" placeholder="<%= current_user.name %>">
+							</div>
+						</div>
+						<div class="uk-margin">
+							<label class="uk-form-label" for="form-horizontal-text">Twitter @Handle</label></label>
+						<div class="uk-form-controls">
+							<input class="uk-input uk-form-large" id="form-horizontal-text" type="text" name="twitter" value="<%= current_user.twitter %>" placeholder="<%= current_user.twitter %>">
+						</div>
+					</div>
+					<div class="uk-margin">
+						<label class="uk-form-label" for="form-horizontal-text">Facebook</label>
+						<div class="uk-form-controls">
+							<input class="uk-input uk-form-large" id="form-horizontal-text" type="text" name="facebook" value="<%= current_user.facebook %>" placeholder="<%= current_user.facebook %>">
+						</div>
+					</div>
+					<div class="uk-margin">
+						<label class="uk-form-label" for="form-horizontal-text">Avatar*</label>
+						<div class="uk-form-controls">
+							<input class="uk-input uk-form-large" id="form-horizontal-text" type="text" name="image" value="<%= current_user.image %>" placeholder="<%= current_user.image %>">
+						</div>
+					</div>
+					<div class="uk-margin">
+						<label class="uk-form-label" for="form-horizontal-text">Password (Required!)</label>
+						<div class="uk-form-controls">
+							<input class="uk-input uk-form-large" id="form-horizontal-text" type="password" value="<%= current_user.password %>" name="password" placeholder="password">
+						</div>
+					</div>
+					<div class="uk-margin">
+						<label class="uk-form-label" for="form-horizontal-text">Confirm Password</label>
+						<div class="uk-form-controls">
+							<input class="uk-input uk-form-large" id="form-horizontal-text" type="password" value="<%= current_user.password %>" name="password_confirmation" placeholder="password">
+						</div>
+					</div>
+					<div class="uk-margin">
+						<label class="uk-form-label" for="form-horizontal-text">Short Bio</label>
+						<div class="uk-form-controls">
+							<textarea class="uk-textarea" id="form-horizontal-text" name="bio" value="<%= current_user.bio %>" placeholder="<%= current_user.bio %>" rows="4"></textarea>
+						</div>
+					</div>
+					<p>You can upload a photo at a website like <a href="https://imgbb.com">imgBB</a> and paste the direct link into this form.</p>
+					<div class="uk-button-group uk-float-right">
+						<button type="reset" value="reset" class="uk-button uk-button-danger uk-width-1-2 uk-margin-small-right">Reset</button> <button type="submit" value="submit" class="uk-button uk-button-primary uk-width-1-2">Submit</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>

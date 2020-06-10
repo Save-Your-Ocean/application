@@ -1,121 +1,103 @@
-<div class="uk-section uk-section-primary uk-padding">
-  <div class="uk-container uk-light">
-    <h1>Editing <%= @location.name %></h1>
-    <h3>Fill out the forms below to update the information for <%= @location.name %>.</h3>
-  </div>
-</div>
-
-
-<div class="uk-section uk-padding-remove-top uk-margin-small-top">
-  <div class="uk-container uk-container-xsmall uk-padding-small-top">
-
-    <div class="uk-card uk-card-body uk-width-1-1">
-      <form class="uk-form-horizontal uk-margin-large" method="post" action="/locations/<%= @location.id%>/edit" %>
+		<div class="uk-section uk-section-primary uk-padding">
+			<div class="uk-container uk-light">
+				<h1>Editing <%= @location.name %></h1>
+				<h3>Fill out the forms below to update the information for <%= @location.name %>.</h3>
+			</div>
+		</div>
+		<div class="uk-section uk-padding-remove-top uk-margin-small-top">
+			<div class="uk-container uk-container-xsmall uk-padding-small-top">
+				<div class="uk-card uk-card-body uk-width-1-1">
+					<form class="uk-form-horizontal uk-margin-large" method="post" action="/locations/<%= @location.id%>/edit" %>
         <input id="hidden" type="hidden" name="_method" value="patch"/>
-        <div class="uk-margin">
-          <label class="uk-form-label" for="form-horizontal-text">Location Name</label>
-            <div class="uk-form-controls">
-              <input class="uk-input uk-form-large" id="form-horizontal-text" type="text" name="name" value="<%= @location.name %>" placeholder="<%= @location.name %>">
-            </div>
-        </div>
-
-        <div class="uk-margin">
-          <label class="uk-form-label" for="form-horizontal-text">E-mail Address</label>
-            <div class="uk-form-controls">
-              <input class="uk-input uk-form-large" id="form-horizontal-text" type="text" name="email" value="<%= @location.email %>" placeholder="<%= @location.email %>">
-            </div>
-        </div>
-
-        <div class="uk-margin">
-          <label class="uk-form-label" for="form-horizontal-text">Phone #</label>
-            <div class="uk-form-controls">
-              <input class="uk-input uk-form-large" id="form-horizontal-text" type="text" name="phone" value="<%= @location.phone %>" placeholder="<%= @location.phone %>">
-            </div>
-        </div>
-
-        <div class="uk-margin">
-          <label class="uk-form-label" for="form-horizontal-text">Street Address</label>
-            <div class="uk-form-controls">
-              <input class="uk-input uk-form-large" id="form-horizontal-text" type="text" name="street" value="<%= @location.street %>" placeholder="<%= @location.street %>">
-            </div>
-        </div>
-
-        <div class="uk-margin">
-          <label class="uk-form-label" for="form-horizontal-text">City</label>
-            <div class="uk-form-controls">
-              <input class="uk-input uk-form-large" id="form-horizontal-text" type="text" name="city" value="<%= @location.city %>" placeholder="<%= @location.city %>">
-            </div>
-        </div>
-
-        <div class="uk-margin">
-          <label class="uk-form-label" for="form-horizontal-text">State/Province</label>
-            <div class="uk-form-controls">
-              <input class="uk-input uk-form-large" id="form-horizontal-text" type="text" name="state" value="<%= @location.state %>" placeholder="<%= @location.state %>">
-            </div>
-        </div>
-
-        <div class="uk-margin">
-          <label class="uk-form-label" for="form-horizontal-select">Select Country</label>
-            <div class="uk-form-controls">
-                <% if @location.country == "VN" %>
-                  <select class="uk-select uk-form-large" name="country" id="form-horizontal-select">
-                      <option disabled>--- Select Country ---</option>
-                      <option value="US">United States</option>
-                      <option value="VN" selected=>Vietnam</option>
-                  </select>
-                <% elsif @location.country == "US" %>
-                  <select class="uk-select uk-form-large" name="country" id="form-horizontal-select">
-                      <option disabled>--- Select Country ---</option>
-                      <option value="US" selected="selected">United States</option>
-                      <option value="VN">Vietnam</option>
-                  </select>
-                <% else %>
-                  <select class="uk-select uk-form-large" name="country" id="form-horizontal-select">
-                      <option selected disabled>--- Select Country ---</option>
-                      <option value="US">United States</option>
-                      <option value="VN">Vietnam</option>
-                  </select>
-                <% end %>
-            </div>
-        </div>
-
-        <div class="uk-margin">
-          <label class="uk-form-label" for="form-horizontal-text">Website</label></label>
-            <div class="uk-form-controls">
-              <input class="uk-input uk-form-large" id="form-horizontal-text" type="text" name="website" value="<%= @location.website %>" placeholder="<%= @location.website %>">
-            </div>
-        </div>
-
-        <div class="uk-margin">
-          <label class="uk-form-label" for="form-horizontal-text">Twitter @Handle</label></label>
-            <div class="uk-form-controls">
-              <input class="uk-input uk-form-large" id="form-horizontal-text" type="text" name="twitter" value="<%= @location.twitter %>" placeholder="<%= @location.twitter %>">
-            </div>
-        </div>
-
-        <div class="uk-margin">
-          <label class="uk-form-label" for="form-horizontal-text">Facebook</label>
-            <div class="uk-form-controls">
-              <input class="uk-input uk-form-large" id="form-horizontal-text" type="text" name="facebook" value="<%= @location.facebook %>" placeholder="<%= @location.facebook %>">
-            </div>
-        </div>
-
-        <div class="uk-margin">
-          <label class="uk-form-label" for="form-horizontal-text">Image</label>
-            <div class="uk-form-controls">
-              <input class="uk-input uk-form-large" id="form-horizontal-text" type="text" name="image" value="<%= @location.image %>" placeholder="<%= @location.image %>">
-            </div>
-        </div>
-
-
-
-        <p>You can upload a photo at a website like <a href="https://imgbb.com">imgBB</a> and paste the direct link into this form.</p>
-
-        <div class="uk-button-group uk-float-right">
-          <button type="reset" value="reset" class="uk-button uk-button-danger uk-width-1-2 uk-margin-small-right">Reset</button> <button type="submit" value="submit" class="uk-button uk-button-primary uk-width-1-2">Submit</button> 
-        </div>
-
-      </form>
-    </div>
-  </div>
+					<div class="uk-margin">
+						<label class="uk-form-label" for="form-horizontal-text">Location Name</label>
+						<div class="uk-form-controls">
+							<input class="uk-input uk-form-large" id="form-horizontal-text" type="text" name="name" value="<%= @location.name %>" placeholder="<%= @location.name %>">
+						</div>
+					</div>
+					<div class="uk-margin">
+						<label class="uk-form-label" for="form-horizontal-text">E-mail Address</label>
+						<div class="uk-form-controls">
+							<input class="uk-input uk-form-large" id="form-horizontal-text" type="text" name="email" value="<%= @location.email %>" placeholder="<%= @location.email %>">
+						</div>
+					</div>
+					<div class="uk-margin">
+						<label class="uk-form-label" for="form-horizontal-text">Phone #</label>
+						<div class="uk-form-controls">
+							<input class="uk-input uk-form-large" id="form-horizontal-text" type="text" name="phone" value="<%= @location.phone %>" placeholder="<%= @location.phone %>">
+						</div>
+					</div>
+					<div class="uk-margin">
+						<label class="uk-form-label" for="form-horizontal-text">Street Address</label>
+						<div class="uk-form-controls">
+							<input class="uk-input uk-form-large" id="form-horizontal-text" type="text" name="street" value="<%= @location.street %>" placeholder="<%= @location.street %>">
+						</div>
+					</div>
+					<div class="uk-margin">
+						<label class="uk-form-label" for="form-horizontal-text">City</label>
+						<div class="uk-form-controls">
+							<input class="uk-input uk-form-large" id="form-horizontal-text" type="text" name="city" value="<%= @location.city %>" placeholder="<%= @location.city %>">
+						</div>
+					</div>
+					<div class="uk-margin">
+						<label class="uk-form-label" for="form-horizontal-text">State/Province</label>
+						<div class="uk-form-controls">
+							<input class="uk-input uk-form-large" id="form-horizontal-text" type="text" name="state" value="<%= @location.state %>" placeholder="<%= @location.state %>">
+						</div>
+					</div>
+					<div class="uk-margin">
+						<label class="uk-form-label" for="form-horizontal-select">Select Country</label>
+						<div class="uk-form-controls">
+							<% if @location.country == "VN" %>
+								<select class="uk-select uk-form-large" name="country" id="form-horizontal-select">
+									<option disabled>--- Select Country ---</option>
+									<option value="US">United States</option>
+									<option value="VN" selected=>Vietnam</option>
+								</select>
+							<% elsif @location.country == "US" %>
+								<select class="uk-select uk-form-large" name="country" id="form-horizontal-select">
+									<option disabled>--- Select Country ---</option>
+									<option value="US" selected="selected">United States</option>
+									<option value="VN">Vietnam</option>
+								</select>
+							<% else %>
+								<select class="uk-select uk-form-large" name="country" id="form-horizontal-select">
+									<option selected disabled>--- Select Country ---</option>
+									<option value="US">United States</option>
+									<option value="VN">Vietnam</option>
+								</select>
+							<% end %>
+						</div>
+					</div>
+					<div class="uk-margin">
+						<label class="uk-form-label" for="form-horizontal-text">Website</label></label>
+					<div class="uk-form-controls">
+						<input class="uk-input uk-form-large" id="form-horizontal-text" type="text" name="website" value="<%= @location.website %>" placeholder="<%= @location.website %>">
+					</div>
+				</div>
+				<div class="uk-margin">
+					<label class="uk-form-label" for="form-horizontal-text">Twitter @Handle</label></label>
+				<div class="uk-form-controls">
+					<input class="uk-input uk-form-large" id="form-horizontal-text" type="text" name="twitter" value="<%= @location.twitter %>" placeholder="<%= @location.twitter %>">
+				</div>
+			</div>
+			<div class="uk-margin">
+				<label class="uk-form-label" for="form-horizontal-text">Facebook</label>
+				<div class="uk-form-controls">
+					<input class="uk-input uk-form-large" id="form-horizontal-text" type="text" name="facebook" value="<%= @location.facebook %>" placeholder="<%= @location.facebook %>">
+				</div>
+			</div>
+			<div class="uk-margin">
+				<label class="uk-form-label" for="form-horizontal-text">Image</label>
+				<div class="uk-form-controls">
+					<input class="uk-input uk-form-large" id="form-horizontal-text" type="text" name="image" value="<%= @location.image %>" placeholder="<%= @location.image %>">
+				</div>
+			</div>
+			<p>You can upload a photo at a website like <a href="https://imgbb.com">imgBB</a> and paste the direct link into this form.</p>
+			<div class="uk-button-group uk-float-right">
+				<button type="reset" value="reset" class="uk-button uk-button-danger uk-width-1-2 uk-margin-small-right">Reset</button> <button type="submit" value="submit" class="uk-button uk-button-primary uk-width-1-2">Submit</button>
+			</div>
+		</form>
+	</div>
+</div>
 </div>

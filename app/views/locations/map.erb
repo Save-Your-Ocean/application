@@ -1,56 +1,52 @@
 <div class="uk-section uk-padding-remove">
-    <div id="map" style="width:100%; height:900px;"></div>
-    <script>
-      var map;
-      var json = "http://127.0.0.1:9006/locations/all.json";
-      var infowindow = new google.maps.InfoWindow();
-
-      function initialize() {
-
-        var mapProp = {
-          center: new google.maps.LatLng(52.4550, -3.3833), //LLANDRINDOD WELLS
-          zoom: 7,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-
-        map = new google.maps.Map(document.getElementById("map"), mapProp);
-
-        $.getJSON(json, function(json) {
-
-        $.each(json, function(data) {
-
-          var latLng = new google.maps.LatLng(data.latitude, data.longitude);
-
-          var marker = new google.maps.Marker({
-            position: latLng,
-            map: map,
-            title: data.name
-          });
-
-          var details = data.twitter + ", " + data.phone + ".";
-
-          bindInfoWindow(marker, map, infowindow, details);
-
-          //    });
-
+  <div id="map" style="width:100%; height:900px;"></div>
+  <script>
+    var map;
+    var json = "http://127.0.0.1:9006/locations/all.json";
+    var infowindow = new google.maps.InfoWindow();
+    
+    function initialize() {
+    
+      var mapProp = {
+        center: new google.maps.LatLng(52.4550, -3.3833), //LLANDRINDOD WELLS
+        zoom: 7,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      };
+    
+      map = new google.maps.Map(document.getElementById("map"), mapProp);
+    
+      $.getJSON(json, function(json) {
+    
+      $.each(json, function(data) {
+    
+        var latLng = new google.maps.LatLng(data.latitude, data.longitude);
+    
+        var marker = new google.maps.Marker({
+          position: latLng,
+          map: map,
+          title: data.name
         });
-
-      }
-
-      function bindInfoWindow(marker, map, infowindow, strDescription) {
-        google.maps.event.addListener(marker, 'click', function() {
-          infowindow.setContent(strDescription);
-          infowindow.open(map, marker);
-        });
-      }
-
-      google.maps.event.addDomListener(window, 'load', initialize);
-
-    </script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXGTrxMiOw8VFOsEwAjN8hDQVXA5_4Cfk&callback=initMap">
-    </script>
-
-
+    
+        var details = data.twitter + ", " + data.phone + ".";
+    
+        bindInfoWindow(marker, map, infowindow, details);
+    
+        //    });
+    
+      });
+    
+    }
+    
+    function bindInfoWindow(marker, map, infowindow, strDescription) {
+      google.maps.event.addListener(marker, 'click', function() {
+        infowindow.setContent(strDescription);
+        infowindow.open(map, marker);
+      });
+    }
+    
+    google.maps.event.addDomListener(window, 'load', initialize);
+  </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXGTrxMiOw8VFOsEwAjN8hDQVXA5_4Cfk&callback=initMap"></script>
 </div>
-    </div>
+</div>
