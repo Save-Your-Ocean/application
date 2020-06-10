@@ -19,6 +19,7 @@ gem 'rack-flash3'
 gem 'geocoder'
 gem 'will_paginate'
 gem 'mail'
+gem 'rack-flash3'
 
 group :test do
   gem 'rspec'

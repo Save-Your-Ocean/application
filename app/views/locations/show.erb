@@ -12,14 +12,12 @@
           <%= @location.check_ins.sum(:count) %> Total Check-ins
         </span></h1>
         <p class="uk-margin-remove-bottom"><i class="fas fa-map-marker-alt"></i> <%= @location.street %>, <%= @location.city %>, <%= @location.country %>.</p>
-        <p class="uk-margin-remove-top uk-margin-remove-bottom"><i class="fas fa-inbox uk-text-middle"></i> <%= @location.phone %>  <i class="fas fa-phone-volume uk-text-middle uk-margin-small-left"></i> <%= @location.phone %> </p>
+        <p class="uk-margin-remove-top uk-margin-remove-bottom"><i class="fas fa-inbox uk-text-middle"></i> <%= @location.email %>  <i class="fas fa-phone-volume uk-text-middle uk-margin-small-left"></i> <%= @location.phone %> </p>
         <p class="uk-margin-remove-top"><a href="https://twitter.com/<%= @location.twitter %>"><i class="fab fa-twitter uk-text-middle"></i> <%= @location.twitter %></a> <a href="https://facebook.com/<%= @location.facebook %>"><i class="fab fa-facebook uk-text-middle uk-margin-small-left"></i> <%= @location.facebook %></a> <a href="<%= @location.website %>"><i class="fas fa-sitemap uk-text-middle uk-margin-small-left"></i> <%= @location.website %></a></p>
-        <form method="post" action="/locations/<%= @location.id %>?checkin=true">
-        <% if logged_in? %>
+        <form method="post" action="/locations/<%= @location.id %>?checkin=true"> 
         <p uk-margin>
-            <button type="submit" value="submit" class="uk-button uk-button-primary uk-button-small">Check-in (<%= current_user.check_ins.where(location_id: @location.id).sum(:count) %>)</button> <button class="uk-button uk-button-default uk-button-small">Edit Business</button>
+            <button type="submit" value="submit" class="uk-button uk-button-primary uk-button-small">Check-in (<%= current_user.check_ins.where(location_id: @location.id).sum(:count) %>)</button> <% if is_owner? %><a class="uk-button uk-button-default uk-button-small" href="/locations/<%= @location.id %>/edit">Edit Business</a> <% end %>
         </p>
-        <% end %>
         </form>
       </div>
     </div>
@@ -28,21 +26,18 @@
 <div class="uk-section">
   <div class="uk-container uk-margin">
 
-  <% if !logged_in? %>
+    <% if !logged_in? %>
       <div class="cls:uk-animation-fade uk-alert-warning uk-margin-remove-top" uk-alert>
           <a class="uk-alert-close" uk-close></a>
-          
           <h3><span class="fas fa-exclamation-triangle uk-align-left uk-text-middle" style="padding-top: 25px; padding-left: 25px;"></span> Please login or register!</h3>
           <p>Please <a href="/users/login">login</a> or <a href="/users/register">register</a> to take advantage of all the SYO features! </p>
       </div>
-
     <% end %>
 
     <% if flash.has?(:error) %>
-
       <div class="cls:uk-animation-fade uk-alert-danger" uk-alert>
           <a class="uk-alert-close" uk-close></a>
-          <h3>Sorry</h3>
+          <h3><span class="fas fa-exclamation-triangle uk-align-left uk-text-middle" style="padding-top: 25px; padding-left: 25px;"></span> Alert: Sorry</h3>
           <p><%= flash[:error] %></p>
       </div>
 
@@ -51,44 +46,12 @@
     <% if flash.has?(:success) %>
       <div class="cls:uk-animation-fade uk-alert-success" uk-alert>
           <a class="uk-alert-close" uk-close></a>
-          <h3>Successful Check-in!</h3>
+          <h3><span class="fas fa-exclamation-triangle uk-align-left uk-text-middle" style="padding-top: 25px; padding-left: 25px;"></span> Alert: Success!</h3>
           <p><%= flash[:success] %></p>
       </div>
     <% end %>
 
-    <% if logged_in? %>
-    <div class="uk-grid-divider uk-child-width-expand@s" uk-grid>
-      <div class="uk-width-1-4@m">
-        <table class="uk-table">
-          <thead>
-            <tr>
-              <th>
-                <a href="/users/profile/<%= current_user.username %>" class="uk-text-middle">
-                  <img src="<%= current_user.image %>" class="uk-preserve-width uk-border-circle" width="50" height="50" style="padding-right: 4px;">
-                  <%= current_user.username %>
-                </a>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <ul class="uk-iconnav uk-iconnav-vertical">
-                  <%# if current_user.role.title == "Admin" %>
-                  <li><a href="/locations/pending"><span uk-icon="icon: list" style="padding-right: 4px;"></span>Pending Listings</a></li>
-                  <%# <% elsif current_user.role.title == nil  %>
-                  <%# end %>
-                  <li><a href="/locations/new"><span uk-icon="icon: plus" style="padding-right: 4px;"></span>Add a Business</a></li>
-                  <li><a href="#"><span uk-icon="icon: file-edit" style="padding-right: 4px;"></span>Edit a Business</a></li>
-                  <li><a href="#"><span uk-icon="icon: settings" style="padding-right: 4px;"></span>Settings</a></li>
-                </ul>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <% end %>
-      <div class="uk-width-expand@m">
+      <div class="uk-width-expand@m" id="comments">
         <h2 class="uk-padding-bottom">Latest Comments</h2>
         <div class="uk-card uk-card-default uk-card-body">
         <% if logged_in? %>
@@ -127,12 +90,13 @@
           </ul>
       
 
-        <ul class="uk-pagination">
+        <ul class="uk-pagination uk-float-right uk-margin">
           <li>
-            <a href="#"><span class="uk-margin-small-right" uk-pagination-previous></span> Previous</a>
+            <%= will_paginate @location_comments %>
+            <%# <a href="#"><span class="uk-margin-small-right" uk-pagination-previous></span> Previous</a>
           </li>
           <li class="uk-margin-auto-left">
-            <a href="#">Next <span class="uk-margin-small-left" uk-pagination-next></span></a>
+            <a href="#">Next <span class="uk-margin-small-left" uk-pagination-next></span></a> %>
           </li>
         </ul>
       </div>

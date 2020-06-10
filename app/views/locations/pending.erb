@@ -7,49 +7,18 @@
 
 <div class="uk-section">
   <div class="uk-container uk-margin">
-<div class="uk-grid-divider uk-child-width-expand@s" uk-grid>
-  <div class="uk-width-1-4@m">
-  <table class="uk-table">
-    <thead>
-        <tr>
-            <th>
-                <a href="/users/profile/<%= @user.username %>" class="uk-text-middle">
-                  <img src="<%= @user.image %>" class="uk-preserve-width uk-border-circle" width="50" height="50" style="padding-right: 4px;">
-                  <%= @user.username %>
-                </a>
-              </th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>
-              <ul class="uk-iconnav uk-iconnav-vertical">
-                <% if is_admin? %>
-                <li><a href="/locations/pending"><span uk-icon="icon: list" style="padding-right: 4px;"></span>Pending Listings</a></li>
-                <% end %>
-                <li><a href="/locations/new"><span uk-icon="icon: plus" style="padding-right: 4px;"></span>Add a Business</a></li>
-                <li><a href="#"><span uk-icon="icon: file-edit" style="padding-right: 4px;"></span>Edit a Business</a></li>
-                <li><a href="#"><span uk-icon="icon: settings" style="padding-right: 4px;"></span>Settings</a></li>
-            </ul>
-            </td>
-        </tr>
-
-    </tbody>
-</table>
-</div>
-
 <div class="uk-width-expand@m">
   <div class="uk-card uk-card-default uk-card-body">
     <table class="uk-table uk-table-hover uk-table-middle uk-table-divider">
         <thead>
             <tr>
-      <th scope="uk-table-shrink uk-text-center"></th>
-      <th scope="uk-table-shrink uk-text-center">Location</th>
-      <th scope="uk-table-shrink uk-text-center">Address</th>
-      <th scope="uk-table-shrink uk-text-center">City</th>
-      <th scope="uk-table-shrink uk-text-center">Country</th>
-      <th scope="uk-table-shrink uk-text-center">User</th>
-      <th scope="uk-table-shrink uk-text-right">Approve?</th>
+      <th scope="uk-text-center"></th>
+      <th scope="uk-text-center">Location</th>
+      <th scope="uk-text-center">Address</th>
+      <th scope="uk-text-center">City</th>
+      <th scope="uk-text-center">Country</th>
+      <th scope="uk-text-center">User</th>
+      <th scope="uk-text-center">Approve?</th>
     </tr>
   </thead>
   <tbody>
@@ -63,7 +32,7 @@
         <td class="uk-text-center"><%= location.country %></td>
         <td class="uk-text-center"><a href="/users/profile/<%= location.users.first.username %>"><%= location.users.first.username %></a></td>
         <td class="uk-text-center"><div class="uk-button-group uk-float-right">
-    <button type="submit" value="true" name="approved" class="uk-button uk-button-primary uk-button-small uk-width-1-1 uk-margin-small-right">Accept</button> <button type="submit" value="false" name="approved" class="uk-button uk-button-small uk-button-danger uk-width-1-1">Deny</button>
+    <button type="submit" value="true" name="approved" class="uk-button uk-button-text uk-button-small uk-width-1-2 uk-margin-small-right">Accept</button> |  <button type="submit" value="false" name="approved" class="uk-button uk-button-text uk-margin-small-left uk-width-1-2">Deny</button>
     </div></td>
       </tr>
           </form>

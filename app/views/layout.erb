@@ -22,7 +22,7 @@
     </script>
   </head>
   <body>
-    <nav class="uk-navbar-container uk-margin" uk-navbar>
+    <nav class="uk-navbar-container uk-margin uk-margin-small-bottom" uk-navbar>
       <div class="uk-navbar-center">
         <a class="uk-navbar-item uk-logo" href="/"><strong>SaveYour<span class="uk-text-primary">0cean</span></strong></a>
           <ul class="uk-navbar-nav">
@@ -68,6 +68,24 @@
         </div>
       </div>
     </nav>
+    <% if logged_in? %>
+    <div class="uk-container uk-margin-remove-vertical">
+    <div class="uk-navbar-center uk-margin-remove-bottom">
+    <ul class="uk-subnav uk-navbar-center uk-margin-small-bottom">
+      <li><a href="/users/profile/<%= current_user.username %>" class="uk-text-middle">
+          <img src="<%= current_user.image %>" class="uk-preserve-width uk-border-circle" width="30" height="30" style="padding-right: 4px;">
+          <%= current_user.username %>
+          </a>
+      </li>
+      <% if is_admin? %>
+      <li><a href="/locations/pending"><span uk-icon="icon: list" style="padding-right: 4px;"></span>Pending Listings</a></li>
+      <% end %>
+      <li><a href="/locations/new"><span uk-icon="icon: plus" style="padding-right: 4px;"></span>Add Business</a></li>
+      <li><a href="/users/<%= current_user.username %>/edit"><span uk-icon="icon: file-edit" style="padding-right: 4px;"></span>Edit Profile</a></li>
+    </ul>
+    </div>
+    </div>
+    <% end %>
     
     <%= yield %>
 

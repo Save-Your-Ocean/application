@@ -1,6 +1,8 @@
 class LocationsController < ApplicationController
 
   get '/locations/map' do
+    settings.page_title = "Refill Stations Map"
+
     @location = Location.find(id=1)
     erb :'/locations/map'
   end
@@ -14,6 +16,8 @@ class LocationsController < ApplicationController
 
   # GET: /locations/new
   get "/locations/new" do
+    settings.page_title = "Add New Location"
+
     if logged_in?
       erb :"/locations/new"
     else
@@ -49,7 +53,7 @@ class LocationsController < ApplicationController
   end
 
   post "/locations/pending/:id" do
-    settings.page_title = 'Pending'
+    settings.page_title = 'Pending Listings'
     @user = current_user
   
     if logged_in?
@@ -72,7 +76,8 @@ class LocationsController < ApplicationController
   # GET: /locations/5
   get "/locations/:id" do
     @location = Location.find(params[:id])
-
+    settings.page_title = "#{@location.name.pluralize} Profile"
+    @location_comments = @location.comments.paginate(:page => params[:page]).order('id DESC')
     if logged_in?
       erb :'/locations/show'
     else
@@ -92,34 +97,44 @@ class LocationsController < ApplicationController
       @user_checkin = CheckIn.where(user_id: @current_user.id, location_id: params[:id])
       @checkin = CheckIn.find_or_create_by(user_id: @current_user.id, location_id: params[:id])
       @comment = Comment.create(location_id: @location.id, user_id: @current_user.id, body: params[:body])
+      @location_comments = @location.comments.paginate(:page => params[:page]).order('id DESC')
 
-      if checkin == "true" and @checkin.count == nil
+      if checkin == true and @checkin.count == nil
         @checkin.count = 1
         @checkin.save
         flash[:success] = "You have successfully checked in to #{@location.name}! This is your first check-in at this location! Keep coming back!"
-        erb :'/locations/show'
-      elsif checkin == "true" and @checkin.count > 0
+        redirect to '/locations/#{params[:id]}'
+      elsif checkin == true and @checkin.count > 0
         @checkin.count = @checkin.count + 1
         @checkin.save
         flash[:success] = "You have successfully checked in to #{@location.name}! You have saved <strong>#{@checkin.count}</strong> plastic bottles! "
-        erb :'/locations/show'
+        redirect to "/locations/#{params[:id]}"
       end
-        
-      erb :'/locations/show'
+      flash[:success] = "You have successfully checked in to #{@location.name}! You have saved <strong>#{@checkin.count}</strong> plastic bottles! "
+      erb :"/locations/show"
     else
-      redirecto to '/users/login'
+      redirect to '/users/login'
     end
 
   end
 
   # GET: /locations/5/edit
   get "/locations/:id/edit" do
+    @location = Location.find(params[:id])
+    settings.page_title = "Edit #{@location.name.capitalize}"
+    
     erb :"/locations/edit"
   end
 
-  # PATCH: /locations/5
-  patch "/locations/:id" do
-    redirect "/locations/:id"
+  patch "/locations/:id/edit" do
+    params.delete_if {|key, value| key == "_method" } 
+    @location = Location.find(params[:id])
+    @location.update(params)
+    @location.approved = nil
+    @location.save
+    flash[:success] = "Your profile has been updated successfully!"
+    @managed_locations = current_user.managed_locations.paginate(:page => params[:page]).order('id DESC')
+    erb :"/users/dashboard"
   end
 
   # DELETE: /locations/5/delete

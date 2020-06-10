@@ -43,6 +43,7 @@ class UsersController < ApplicationController
   end
 
   get "/users/profile/:username" do
+    settings.page_title = "#{params[:username].capitalize}'s Profile"
     @user = User.find_by(username: params[:username])
     @checkins = CheckIn.where(user_id: @user.id)
     @user_comments = Comment.where(:user_id => @user.id).paginate(:page => params[:page]).order('id DESC')
@@ -50,8 +51,9 @@ class UsersController < ApplicationController
   end
 
   get '/users/dashboard' do
-    settings.page_title = 'Dashboard'
+    settings.page_title = "#{current_user.username.capitalize}'s Dashboard"
     @user = current_user
+    @managed_locations = current_user.managed_locations.paginate(:page => params[:page]).order('id DESC')
     @checkins = CheckIn.where(user_id: 1)
     if !logged_in?
       redirect to '/users/login'
@@ -76,20 +78,32 @@ class UsersController < ApplicationController
   end
 
   # GET: /users/5
-  get "/users/:id" do
+  get "/users/:username" do
     content_type :json
-    @users = User.find(params[:id])
+    @users = User.find_by(username: params[:username])
     @users.to_json
   end
 
   # GET: /users/5/edit
-  get "/users/:id/edit" do
-    erb :"/users/edit"
+  get "/users/:username/edit" do
+    settings.page_title = "Edit Profile"
+    if current_user.username == params[:username]
+      @user = current_user
+      erb :"/users/edit"
+    else
+      flash[:error] = "Sorry, you are not the correct user."
+      erb :"/users/dashboard"
+    end
   end
 
   # PATCH: /users/5
-  patch "/users/:id" do
-    redirect "/users/:id"
+  patch "/users/:username/edit" do
+    params.delete_if {|key, value| key == "_method" } 
+    current_user.update(params)
+    @managed_locations = current_user.managed_locations.paginate(:page => params[:page]).order('id DESC')
+    flash[:success] = "Your user profile has been updated successfully!"
+    erb :"/users/dashboard"
+
   end
 
   # DELETE: /users/5/delete

@@ -43,5 +43,14 @@ class ApplicationController < Sinatra::Base
       @current_user ||= User.find_by(id: session[:user_id])
     end
 
+    def is_owner?
+      managed = []
+      current_user.managed_locations.each do |location|
+        managed << location.id 
+      end
+      managed.include?(@location.id) ? true : false
+    end
+        
+
   end
 end

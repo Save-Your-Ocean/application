@@ -13,6 +13,7 @@ require 'geocoder'
 require 'will_paginate'
 require 'will_paginate/active_record'
 require 'mail'
+require 'rack-flash'
 
 require './app/controllers/application_controller'
 require_all 'app'
