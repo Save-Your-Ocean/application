@@ -41,15 +41,3 @@ u.save
 ```
 Now this account can approve or deny new locations.
 
-
-## Team
-- Huong Hoang - CEO
-- Nolan Mayersky - Software Engineer (@nolyoi)
-
-## Meta
-
-*Visit our website at:* https://saveyourocean.com/
-
-*Like us on Facebook:* https://facebook.com/saveyourocean
-
-<contact@saveyourocean.com>
