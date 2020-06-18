@@ -41,3 +41,6 @@ u.save
 ```
 Now this account can approve or deny new locations.
 
+## Screenshots
+![https://i.imgur.com/ipyaeyi.png](https://i.imgur.com/ipyaeyi.png)
+![https://i.imgur.com/9aTqefV.png](https://i.imgur.com/9aTqefV.png)
