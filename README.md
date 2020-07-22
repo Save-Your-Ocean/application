@@ -18,10 +18,6 @@ We have built an application that allows users to browse nearby locations where 
 
 So, what are you waiting for? [Join](https://saveyourocean.com/users/register) Save Your Ocean and become an *Ocean Hero* today!
 
-
-```
-Now this account can approve or deny new locations.
-
 ## Screenshots
 ![https://i.imgur.com/ipyaeyi.png](https://i.imgur.com/ipyaeyi.png)
 ![https://i.imgur.com/9aTqefV.png](https://i.imgur.com/9aTqefV.png)
