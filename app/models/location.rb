@@ -10,7 +10,7 @@ class Location < ActiveRecord::Base
   after_validation :geocode 
 
   def address
-    [street, city, country].compact.join(', ')
+    [street, city, state, country].compact.join(', ')
   end
 
 end

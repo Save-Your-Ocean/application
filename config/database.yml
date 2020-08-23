@@ -1,7 +1,11 @@
 development:
-  adapter: sqlite3
-  database: db/development.sqlite
+  adapter: postgresql
+  encoding: unicode
+  database: syo_development
+  pool: 2
 
-test:
-  adapter: sqlite3
-  database: db/test.sqlite
+production:
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+ 

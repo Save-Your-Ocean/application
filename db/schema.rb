@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_08_041601) do
+ActiveRecord::Schema.define(version: 2020_08_23_163531) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "check_ins", force: :cascade do |t|
     t.integer "user_id"
@@ -47,12 +50,13 @@ ActiveRecord::Schema.define(version: 2020_06_08_041601) do
     t.string "email"
     t.string "phone"
     t.string "image"
-    t.string "twitter"
-    t.string "facebook"
+    t.string "twitter_handle"
+    t.string "facebook_handle"
     t.float "latitude"
     t.float "longitude"
     t.string "state"
     t.string "website"
+    t.index ["latitude", "longitude"], name: "index_locations_on_latitude_and_longitude"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -71,8 +75,8 @@ ActiveRecord::Schema.define(version: 2020_06_08_041601) do
     t.integer "role_id"
     t.string "email"
     t.string "image"
-    t.string "twitter"
-    t.string "facebook"
+    t.string "twitter_handle"
+    t.string "facebook_handle"
   end
 
 end

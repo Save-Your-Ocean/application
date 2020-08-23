@@ -34,7 +34,7 @@
 								Map
 							</a>
 						</li>
-						<% if logged_in? %>
+						<% if !logged_in? %>
 							<li>
 								<a href="/users/dashboard">
 									<span class="uk-icon uk-margin-small-right" uk-icon="icon: settings; ratio: 1.3"></span>
@@ -64,7 +64,7 @@
 				</div>
 			</div>
 		</nav>
-		<% if logged_in? %>
+		<% if !logged_in? %>
 			<div class="uk-container uk-margin-remove-vertical">
 				<div class="uk-navbar-center uk-margin-remove-bottom">
 					<ul class="uk-subnav uk-navbar-center uk-margin-small-bottom">

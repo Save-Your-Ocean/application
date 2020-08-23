@@ -55,7 +55,7 @@ class UsersController < ApplicationController
     @user = current_user
     @managed_locations = current_user.managed_locations.paginate(:page => params[:page]).order('id DESC')
     @checkins = CheckIn.where(user_id: 1)
-    if !logged_in?
+    if logged_in?
       redirect to '/users/login'
     else
       erb :'/users/dashboard'
