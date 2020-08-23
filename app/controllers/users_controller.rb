@@ -4,7 +4,7 @@ class UsersController < ApplicationController
     settings.page_title = 'User Login'
 
     if logged_in?
-      redirect to "/users/login"
+      redirect to "/users/dashboard"
     else
       erb :'/users/login'
     end
@@ -24,7 +24,7 @@ class UsersController < ApplicationController
 
   get '/users/register' do
     settings.page_title = 'User Registration'
-    if !logged_in?
+    if logged_in?
       erb :'/users/register'
     else
       redirect to '/user/dashboard'
@@ -56,9 +56,9 @@ class UsersController < ApplicationController
     @managed_locations = current_user.managed_locations.paginate(:page => params[:page]).order('id DESC')
     @checkins = CheckIn.where(user_id: 1)
     if logged_in?
-      redirect to '/users/login'
-    else
       erb :'/users/dashboard'
+    else
+      redirect to '/users/login'
     end
   end
   

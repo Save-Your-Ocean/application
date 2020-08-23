@@ -41,5 +41,4 @@ require 'sinatra/flash'
 require 'sinatra-initializers'
 
 require './app/controllers/application_controller'
-require './config/initializers/00-geocoder'
 require_all 'app'

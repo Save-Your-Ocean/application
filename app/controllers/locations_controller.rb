@@ -17,7 +17,7 @@ class LocationsController < ApplicationController
   get '/locations/new' do
     settings.page_title = 'Add New Location'
 
-    if !logged_in?
+    if logged_in?
       erb :"/locations/new"
     else
       redirect to '/users/login'
@@ -27,7 +27,7 @@ class LocationsController < ApplicationController
   # POST: /locations
   post '/locations/new' do
     @user = current_user
-    if !logged_in?
+    if logged_in?
       @location = Location.create(params)
       LocationManager.create(user_id: @user.id, location_id: @location.id)
 
