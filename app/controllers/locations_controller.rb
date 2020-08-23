@@ -108,6 +108,7 @@ class LocationsController < ApplicationController
         erb :"/locations/show"
       end
     else
+      flash[:error] = "Sorry, you must be logged in to do that!"
       redirect to '/users/login'
     end
   end
