@@ -1,3 +1,4 @@
 class SYO < Sinatra::Base
-  register Sinatra::Initializers
+  # Load intializers
+  Dir['./config/initializers/*.rb'].sort.each { |file| require file }
 end
