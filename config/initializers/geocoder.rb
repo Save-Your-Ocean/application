@@ -2,7 +2,6 @@ require 'singleton'
 require 'geocoder/configuration_hash'
 
 module Geocoder
-
   ##
   # Configuration options should be set by passing a hash:
   #
@@ -13,10 +12,8 @@ module Geocoder
   #     :units    => :km
   #   )
   #
-  def self.configure(options = nil, &block)
-    if !options.nil?
-      Configuration.instance.configure(options)
-    end
+  def self.configure(options = nil)
+    Configuration.instance.configure(options) unless options.nil?
   end
 
   ##
@@ -31,10 +28,8 @@ module Geocoder
   #
   def self.config_for_lookup(lookup_name)
     data = config.clone
-    data.reject!{ |key,value| !Configuration::OPTIONS.include?(key) }
-    if config.has_key?(lookup_name)
-      data.merge!(config[lookup_name])
-    end
+    data.reject! { |key, _value| !Configuration::OPTIONS.include?(key) }
+    data.merge!(config[lookup_name]) if config.has_key?(lookup_name)
     data
   end
 
@@ -49,25 +44,25 @@ module Geocoder
   class Configuration
     include Singleton
 
-    OPTIONS = [
-      :timeout,
-      :lookup,
-      :ip_lookup,
-      :language,
-      :http_headers,
-      :use_https,
-      :http_proxy,
-      :https_proxy,
-      :api_key,
-      :cache,
-      :cache_prefix,
-      :always_raise,
-      :units,
-      :distances,
-      :basic_auth,
-      :logger,
-      :kernel_logger_level
-    ]
+    OPTIONS = %i[
+      timeout
+      lookup
+      ip_lookup
+      language
+      http_headers
+      use_https
+      http_proxy
+      https_proxy
+      api_key
+      cache
+      cache_prefix
+      always_raise
+      units
+      distances
+      basic_auth
+      logger
+      kernel_logger_level
+    ].freeze
 
     attr_accessor :data
 
@@ -94,7 +89,6 @@ module Geocoder
     end
 
     def set_defaults
-
       # geocoding options
       @data[:timeout]      = 3           # geocoding service timeout (secs)
       @data[:lookup]       = :google     # name of street address geocoding service (symbol)
@@ -104,9 +98,9 @@ module Geocoder
       @data[:use_https]    = false       # use HTTPS for lookup requests? (if supported)
       @data[:http_proxy]   = nil         # HTTP proxy server (user:pass@host:port)
       @data[:https_proxy]  = nil         # HTTPS proxy server (user:pass@host:port)
-      @data[:api_key]      = ENV['MAP_API_KEY']         # API key for geocoding service
+      @data[:api_key]      = ENV['MAP_API_KEY'] # API key for geocoding service
       @data[:cache]        = nil         # cache object (must respond to #[], #[]=, and #keys)
-      @data[:cache_prefix] = "geocoder:" # prefix (string) to use for all cache keys
+      @data[:cache_prefix] = 'geocoder:' # prefix (string) to use for all cache keys
       @data[:basic_auth]   = {}          # user and password for basic auth ({:user => "user", :password => "password"})
       @data[:logger]       = :kernel     # :kernel or Logger instance
       @data[:kernel_logger_level] = ::Logger::WARN # log level, if kernel logger is used

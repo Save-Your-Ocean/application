@@ -6,6 +6,8 @@ require 'dotenv'
 
 Dotenv.load
 Bundler.require(:default, ENV['SINATRA_ENV'])
+# Load intializers
+Dir['./config/initializers/*.rb'].sort.each { |file| require file }
 
 configure :development do
   ActiveRecord::Base.establish_connection(
