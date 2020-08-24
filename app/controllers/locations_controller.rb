@@ -1,4 +1,6 @@
 class LocationsController < ApplicationController
+  helpers Sinatra::Jsonp
+
   get '/locations/map' do
     settings.page_title = 'Refill Stations Map'
 
@@ -8,9 +10,8 @@ class LocationsController < ApplicationController
 
   # GET: /locations
   get '/locations/all.json' do
-    content_type :json
-    @locations = Location.all
-    @locations.to_json
+    locations = Location.all
+    JSONP locations, 'eqfeed_callback'
   end
 
   # GET: /locations/new

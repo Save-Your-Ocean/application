@@ -82,6 +82,7 @@ GEM
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
     minitest (5.14.1)
+    multi_json (1.15.0)
     mustermann (1.1.1)
       ruby2_keywords (~> 0.0.1)
     net-scp (3.0.0)
@@ -96,6 +97,8 @@ GEM
       method_source (~> 1.0)
     public_suffix (4.0.5)
     rack (2.2.3)
+    rack-cors (1.1.1)
+      rack (>= 2.0.0)
     rack-flash3 (1.0.5)
       rack
     rack-protection (2.0.8.1)
@@ -148,6 +151,9 @@ GEM
     sinatra-flash (0.3.0)
       sinatra (>= 1.0.0)
     sinatra-initializers (0.1.4)
+    sinatra-jsonp (0.5.0)
+      multi_json (~> 1.8)
+      sinatra (>= 1.0)
     sinatra-outputbuffer (0.1.0)
       sinatra (>= 1.0.a)
     sqlite3 (1.4.2)
@@ -191,6 +197,7 @@ DEPENDENCIES
   mail
   pg
   pry
+  rack-cors
   rack-flash3
   rack-test
   rake
@@ -203,6 +210,7 @@ DEPENDENCIES
   sinatra-cache
   sinatra-flash
   sinatra-initializers
+  sinatra-jsonp
   sqlite3
   sysrandom
   thin
