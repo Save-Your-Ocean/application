@@ -75,7 +75,6 @@ class LocationsController < ApplicationController
     @location = Location.find(params[:id])
     settings.page_title = "#{@location.name.pluralize} Profile"
     @location_comments = @location.comments.paginate(page: params[:page]).order('id DESC')
-    binding.pry
     if logged_in?
       erb :'/locations/show'
     else
