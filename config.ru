@@ -1,4 +1,6 @@
 require './config/environment'
+require './app/app'
+require './api/api'
 
 if ActiveRecord::Base.connection.migration_context.needs_migration?
   raise 'Migrations are pending. Run `rake db:migrate` to resolve the issue.'
@@ -31,9 +33,5 @@ use Rack::Cors do
 end
 
 use Rack::MethodOverride
-run ApplicationController
-use RolesController
-use CheckInsController
-use LocationsController
-use CommentsController
-use UsersController
+
+run Rack::Cascade.new [Web, SYO::API]

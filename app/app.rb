@@ -1,3 +1,3 @@
-class SYO < Sinatra::Base
+class Web < ApplicationController
 
 end

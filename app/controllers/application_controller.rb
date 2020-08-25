@@ -50,7 +50,6 @@ class ApplicationController < Sinatra::Base
       end
       managed.include?(@location.id) ? true : false
     end
-        
 
   end
 end
