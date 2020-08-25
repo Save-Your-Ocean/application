@@ -8,7 +8,7 @@ end
 
 use Rack::Cors do
   allow do
-    origins '*'
+    origins 'localhost:9393'
     resource '*', headers: :any, methods: %i[get post put delete options]
   end
 end
