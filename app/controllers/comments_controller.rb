@@ -1,4 +1,4 @@
-class CommentsController < ApplicationController
+class CommentsController < App
 
   # GET: /comments
   get "/comments" do

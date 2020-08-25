@@ -43,5 +43,8 @@ require 'rack-flash'
 require 'sinatra/flash'
 require 'sinatra/jsonp'
 
-require './app/controllers/application_controller'
+Dir['./api/resources/*.rb'].sort.each { |file| require file }
+
+require './app/app'
+
 require_all 'app'

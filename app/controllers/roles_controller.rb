@@ -1,4 +1,4 @@
-class RolesController < ApplicationController
+class RolesController < App
 
   # GET: /roles
   get "/roles" do

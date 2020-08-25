@@ -14,5 +14,9 @@ use Rack::Cors do
 end
 
 use Rack::MethodOverride
-use Rack::Session::Cookie
-run Rack::Cascade.new [Web, SYO::API]
+use UsersController
+use LocationsController
+use RolesController
+use CommentsController
+use CheckInsController
+run Rack::Cascade.new [App, SYO::API]

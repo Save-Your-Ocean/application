@@ -1,4 +1,4 @@
-class CheckInsController < ApplicationController
+class CheckInsController < App
 
   # GET: /check_ins
   get "/check_ins" do

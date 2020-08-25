@@ -1,4 +1,4 @@
-class LocationsController < ApplicationController
+class LocationsController < App
   helpers Sinatra::Jsonp
 
   get '/locations/map' do
@@ -101,7 +101,7 @@ class LocationsController < ApplicationController
         @checkin.count = 1
         @checkin.save
         flash[:success] = "You have successfully checked in to #{@location.name}! This is your first check-in at this location! Keep coming back!"
-        redirect to '/locations/#{params[:id]}'
+        erb :'/locations/show'
       elsif (checkin == 'true') && (@checkin.count > 0)
         @checkin.count = @checkin.count + 1
         @checkin.save

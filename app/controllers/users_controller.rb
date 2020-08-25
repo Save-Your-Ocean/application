@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class UsersController < App
 
   get '/users/login' do
     settings.page_title = 'User Login'
@@ -51,7 +51,7 @@ class UsersController < ApplicationController
   end
 
   get '/users/dashboard' do
-    settings.page_title = "#{current_user.username.capitalize}'s Dashboard"
+    settings.page_title = "User Dashboard"
     @user = current_user
     @managed_locations = current_user.managed_locations.paginate(:page => params[:page]).order('id DESC')
     @checkins = CheckIn.where(user_id: 1)
