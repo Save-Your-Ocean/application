@@ -14,6 +14,8 @@ module SYO
       end
     end
 
+    mount SYO::Locations
+
     get :status do
       {
         online: true,
