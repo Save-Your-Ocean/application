@@ -1,7 +1,7 @@
 namespace :deploy do
   # NOTE: You should do migration only on one server. So here we do it in sequence so
   # that only one server really gets the work done.
-  after :updated, :migrate do
+  after :updating, :migrate do
     on roles(:db), in: :sequence, wait: 15 do
       within release_path do
         with rack_env: fetch(:stage) do
