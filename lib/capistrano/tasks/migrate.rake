@@ -1,22 +1,33 @@
-namespace :deploy do
-  # NOTE: You should do migration only on one server. So here we do it in sequence so
-  # that only one server really gets the work done.
-  after :updating, :migrate do
-    on roles(:db), in: :sequence, wait: 15 do
-      within release_path do
-        with rack_env: fetch(:stage) do
-          execute :rake, 'db:migrate'
+with rack_env: "production" do
+  #
+  # migration
+  #
+  set :migration_role, :db
+  set :migration_servers, -> { primary(fetch(:migration_role)) }
+  namespace :deploy do
+    desc 'Runs rake db:migrate if needed'
+    task :migrate do
+      on fetch(:migration_servers) do
+        if test("diff -q #{release_path}/db/migrate #{current_path}/db/migrate")
+          info '[deploy:migrate] Skip `deploy:migrate` (nothing changed in db/migrate)'
+        else
+          info '[deploy:migrate] Run `rake db:migrate`'
+          invoke :'deploy:do_migrate'
         end
       end
     end
-  end
-
-  before :finished, :restart_server do
-    on roles(:app), in: :parallel do
-      within release_path.join('tmp') do
-        execute :touch, 'restart.txt'
+  
+    desc 'Runs rake db:migrate'
+    task :do_migrate do
+      on fetch(:migration_servers) do
+        within release_path do
+          with rack_env: "production" do
+            execute :rake, 'db:migrate'
+          end
+        end
       end
     end
+  
+    after 'deploy:updated', 'deploy:migrate'
   end
-
 end
