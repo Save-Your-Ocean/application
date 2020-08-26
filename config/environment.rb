@@ -13,8 +13,13 @@ Dir['./config/initializers/*.rb'].sort.each { |file| require file }
 # Connect to Postgres cluster
 app_dir = "/home/deploy/src/syo"
 
-DB_CONFIGS = YAML.safe_load(ERB.new(File.read("#{app_dir}/current/config/database.yml")).result)
-ActiveRecord::Base.establish_connection(DB_CONFIGS[ENV['APP_ENV']])
+if ENV['APP_ENV'] == "production"
+  DB_CONFIGS = YAML.safe_load(ERB.new(File.read("#{app_dir}/current/config/database.yml")).result)
+  ActiveRecord::Base.establish_connection(DB_CONFIGS['production'])
+else
+  DB_CONFIGS = YAML.safe_load(ERB.new(File.read("#{app_dir}/current/config/database.yml")).result)
+  ActiveRecord::Base.establish_connection(DB_CONFIGS[ENV['APP_ENV']])
+end
 
 require 'json'
 require 'rack-flash'
