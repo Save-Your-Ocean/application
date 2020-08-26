@@ -59,3 +59,10 @@ server "165.22.103.246", user: "deploy", roles: %w{app web}
 #     auth_methods: %w(publickey password)
 #     # password: "please use keys"
 #   }
+
+set :default_env, { 
+  path: "/opt/ruby/bin:$PATH",
+  environment: "production",
+  database: "production",
+  APP_ENV: "production"
+}
