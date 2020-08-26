@@ -1,4 +1,4 @@
-class UsersController < Sinatra::Base
+class UsersController < App
 
   get '/users/login' do
     settings.page_title = 'User Login'
