@@ -25,9 +25,9 @@ class UsersController < App
   get '/users/register' do
     settings.page_title = 'User Registration'
     if logged_in?
-      erb :'/users/register'
-    else
       redirect to '/user/dashboard'
+    else
+      erb :'/users/register'
     end
   end
 
