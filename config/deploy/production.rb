@@ -64,5 +64,6 @@ set :default_env, {
   path: "/opt/ruby/bin:$PATH",
   environment: "production",
   database: "production",
-  APP_ENV: "production"
+  APP_ENV: "production",
+  RACK_ENV: "production"
 }
