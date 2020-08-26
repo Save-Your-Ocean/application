@@ -19,7 +19,7 @@ if ENV['APP_ENV'] == "production"
   ActiveRecord::Base.establish_connection(DB_CONFIGS[rack_env])
 else
   DB_CONFIGS = YAML.safe_load(ERB.new(File.read("./config/database.yml")).result)
-  ActiveRecord::Base.establish_connection(DB_CONFIGS[ENV[rack_env]])
+  ActiveRecord::Base.establish_connection(DB_CONFIGS[rack_env])
 end
 
 require 'json'
