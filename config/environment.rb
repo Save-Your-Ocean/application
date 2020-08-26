@@ -11,9 +11,10 @@ Bundler.require(:default, ENV['SINATRA_ENV'])
 Dir['./config/initializers/*.rb'].sort.each { |file| require file }
 
 # Connect to Postgres cluster
-DB_CONFIGS = YAML.safe_load(ERB.new(File.read("./config/database.yml")).result)
-ActiveRecord::Base.establish_connection(DB_CONFIGS[ENV['APP_ENV']])
+app_dir = "/home/deploy/src/syo"
 
+DB_CONFIGS = YAML.safe_load(ERB.new(File.read("#{app_dir}/current/config/database.yml")).result)
+ActiveRecord::Base.establish_connection(DB_CONFIGS[ENV['APP_ENV']])
 
 require 'json'
 require 'rack-flash'
