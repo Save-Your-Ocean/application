@@ -19,4 +19,4 @@ use LocationsController
 use RolesController
 use CommentsController
 use CheckInsController
-run Rack::Cascade.new [App, SYO::API]
+run App
