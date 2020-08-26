@@ -14,9 +14,9 @@ use Rack::Cors do
 end
 
 use Rack::MethodOverride
+run App
 use UsersController
 use LocationsController
 use RolesController
 use CommentsController
 use CheckInsController
-run App
