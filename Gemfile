@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'activerecord', '~> 6.0.3', '>= 6.0.3', :require => 'active_record'
+gem 'activerecord', '~> 6.0.3', :require => 'active_record'
 gem 'aws-sdk-s3', '~> 1.78'
 gem 'bcrypt'
 gem 'bcrypt_pbkdf', '>= 1.0', '< 2.0'
